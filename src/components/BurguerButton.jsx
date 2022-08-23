@@ -71,4 +71,4 @@ border-radius: 0.3em;
   transform: rotate(-45deg);
   top: 13px;
 }
-`
+`;

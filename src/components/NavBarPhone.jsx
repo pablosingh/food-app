@@ -4,21 +4,18 @@ import styled from 'styled-components';
 import BurguerButton from './BurguerButton';
 
 export const NavBarPhone = () => {
-  const name = '<Pablo Singh>'
   const [clicked, setClicked] = useState(false);
   const handleClick = () => {
-    //cuando esta true lo pasa a false y vice versa
+    //cuando esta true lo pasa a false y viceversa
     setClicked(!clicked)
   }
   return (
     <>
       <NavContainer>
         <div className={`links ${clicked ? 'active' : ''}`}>
-          <Link onClick={handleClick} to='name'>{name}</Link>
-          <Link onClick={handleClick} to='about'>Sobre Mi</Link>
-          <Link onClick={handleClick} to='skills'>Habilidades</Link>
-          <Link onClick={handleClick} to='proyects'>Proyectos</Link>
-          <Link onClick={handleClick} to='contact'>Contact</Link>
+          <Link onClick={handleClick} to='about'>Menu</Link>
+          <Link onClick={handleClick} to='skills'>Contacto</Link>
+          <Link onClick={handleClick} to='proyects'>Acerca</Link>
         </div>
         <div className='burguer'>
           <BurguerButton clicked={clicked} handleClick={handleClick} />

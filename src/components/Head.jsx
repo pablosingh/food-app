@@ -1,5 +1,6 @@
 import { Link, animateScroll as scroll } from "react-scroll";
 import styled from "styled-components";
+import { primaryColor } from '../styles/colors';
 
 export const Head = () => {
     return (
@@ -45,7 +46,7 @@ export const Head = () => {
                     smooth={true}
                     offset={-70}
                     duration={500}
-                    >About
+                    >Acerca
                 </Link>
             </div>
         </Container>
@@ -61,7 +62,7 @@ const Container = styled.div`
     justify-content: space-around;
     position: fixed;
     z-index: 1;
-    background-color: rgb(249, 249, 22);
+    background-color: ${primaryColor};
     @media(max-width: 768px){
         display: none;
     }
