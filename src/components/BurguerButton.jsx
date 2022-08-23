@@ -18,7 +18,7 @@ function BurguerButton(props) {
 export default BurguerButton;
 
 const Burguer = styled.div`
-background-color: rgba(0, 0, 0, 0.5);
+background-color: rgb(249, 249, 22);
 border-radius: 0.3em;
   /* nav-icon-5 */
 .nav-icon-5{
@@ -28,10 +28,9 @@ border-radius: 0.3em;
   position: relative;
   cursor: pointer;
   display: inline-block;
-  color: #121212;
 }
 .nav-icon-5 span{
-  background-color:#fff;
+  background-color: black;
   position: absolute;
   border-radius: 2px;
   transition: .3s cubic-bezier(.8, .5, .2, 1.4);

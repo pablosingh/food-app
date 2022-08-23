@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Link } from 'react-scroll';
 import styled from 'styled-components';
 import BurguerButton from './BurguerButton';
-import pdf from '../pdf/Pablo_Singh_FullStack.pdf';
 
 export const NavBarPhone = () => {
   const name = '<Pablo Singh>'
@@ -20,11 +19,6 @@ export const NavBarPhone = () => {
           <Link onClick={handleClick} to='skills'>Habilidades</Link>
           <Link onClick={handleClick} to='proyects'>Proyectos</Link>
           <Link onClick={handleClick} to='contact'>Contact</Link>
-          <a href={pdf} 
-                    onClick={handleClick}
-                    download="Pablo_Singh_FullStack.pdf"
-                    >Download
-                </a>
         </div>
         <div className='burguer'>
           <BurguerButton clicked={clicked} handleClick={handleClick} />
