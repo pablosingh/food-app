@@ -26,7 +26,11 @@ export const Card = props => {
                         <p className='black'>Descripcion: </p>
                             {description}
                         </span>
-                    <button className='btnCard'>Agregar</button>
+                    <button className='btnCard'
+                        onClick={ () => {
+                            console.log(id);
+                        }}>Agregar
+                    </button>
                 </div>
             {/* </Link> */}
         </Container>
