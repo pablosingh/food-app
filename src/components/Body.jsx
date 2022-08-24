@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { NavBarPhone } from './NavBarPhone';
 import { Head } from './Head';
 import { Cards } from './Cards';
+import { AddDinner } from './AddDinner';
 import { Table } from './Table';
 
 export const Body = () => {
@@ -10,8 +11,9 @@ export const Body = () => {
             <Head/>
             <NavBarPhone/>
             <SubContainer>
-                {/* <Cards/> */}
-                <Table/>
+                <Cards/>
+                {/* <AddDinner/> */}
+                {/* <Table/> */}
             </SubContainer>
         </Container>
     )
@@ -24,7 +26,9 @@ const Container = styled.div`
 `;
 
 const SubContainer = styled.div`
-    padding-top: 4em;
+    padding: 4em 0em;
+    margin: 0em;
     width: 100%;
     height: 100%;
+    background-color: green;
 `;

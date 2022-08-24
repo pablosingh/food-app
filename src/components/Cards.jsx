@@ -1,5 +1,6 @@
 // import { useSelector } from 'react-redux';
 import { Card } from './Card';
+import { SearchBar } from './SearchBar';
 import styled from 'styled-components';
 
 export const Cards = () => {
@@ -21,6 +22,7 @@ export const Cards = () => {
     return (
         <Container>
             {/* { state && state.subCards.map( c => <Card food={c} />) } */}
+            <SearchBar/>
             { arreglo.map( (c,i) => <Card food={c} key={i}/>) }
         </Container>
     )
@@ -29,5 +31,5 @@ export const Cards = () => {
 const Container = styled.div`
     display: flex;
     flex-wrap: wrap;
-    padding: 5em 0em;
+    padding: 0.5em 0em;
 `;

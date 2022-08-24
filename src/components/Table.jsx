@@ -1,49 +1,41 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { primaryColor, gray, hoverColorBackground, hoverColorText } from '../styles/colors';
+import { primaryColor, gray, hoverColorText, hoverColorBackground } from '../styles/colors';
 
 export const Table = () => {
     const [ dinners, setDinners ] = useState([]);
-    const [ data, setData ] = useState({name: ''});
-
-    const changing = e => {
+    useEffect(() =>{
+        setDinners([
+            'Pablo',
+            'Roberto',
+            'Manuel',
+            'Singh'
+        ]);
+    }, []);
+    const openItem = e => {
         e.preventDefault();
-        setData({ 
-            ...data,
-            [e.target.name]: e.target.value
-        });
-    };
-    const adding = e => {
-        e.preventDefault();
-        setDinners(
-            [...dinners, data.name]
-        );
-        setData({name: ''});
-    };
-    const submiting = e => {
-        e.preventDefault();
-        console.log(dinners);
-        setData({name: ''});
-    };
+        console.log('Item clicked');
+    }
     return (
         <Container>
-            <div className="card">
-                <h2>Agregando Comensales</h2>
-                <div className="nameAndInput">
-                    <label htmlFor="name">Nombre : </label>
-                    <input type="text" name='name' 
-                        placeholder='Ingrese su Nombre'
-                        className='inputName'
-                        onChange={changing}
-                        value={data.name}/>
-                </div>
-                <div className="twoBtn">
-                    <button className="btn" 
-                        onClick={adding}>Agregar</button>
+            <Card>
+                <h2>Comensales</h2>
+                { dinners && dinners.map( (d,index) => <Item>
                     <button className="btn"
-                        onClick={submiting}>Listo</button>
-                </div>
-            </div>
+                        onClick={ e => {
+                            e.preventDefault();
+                            console.log(index);
+                            setDinners(
+                                dinners.filter( (d,i) => index != i )
+                            );
+                        }}
+                        >X
+                    </button>
+                    <Name onClick={openItem}>
+                        {d} 
+                    </Name>
+                </Item>) }
+            </Card>
         </Container>
     )
 };
@@ -55,34 +47,49 @@ const Container = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    .inputName{
-        border-radius: 1em;
+    background-color: pink;
+`;
+
+const Card = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 2em;
+    background-color: ${primaryColor}};
+    padding: 1em 1em;
+    margin: 1em 0em;
+    @media(max-width: 768px){
+        width: 80%;
     }
-    .card{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
+    @media(min-width: 768px){
         width: 50%;
-        border-radius: 2em;
-        background-color: ${primaryColor}};
-        padding: 1em 2em;
-        margin: 1em 2em;
     }
-    .nameAndInput{
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-    }
+`;
+
+const Item = styled.div`
+    display: flex;
+    width: 100%;
+    color: black;
+    padding: 0.2em 1em;
+    margin: 0.2em 0.2em;
     .btn{
         background-color: ${gray};
         color: white;
         margin: 0.5em 0.5em;
-        padding: 0.5em 1em;
+        padding: 0.3em 0.5em;
         border-radius: 2em;
+        box-shadow: none;
     }
     .btn:hover{
         background-color: ${hoverColorText};
         color: ${hoverColorBackground};
     }
+`;
+
+const Name = styled.div`
+    width: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
 `;
