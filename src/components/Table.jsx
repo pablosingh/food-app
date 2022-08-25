@@ -4,11 +4,13 @@ import { AddDinner } from './AddDinner';
 import { Cards } from './Cards';
 import { primaryColor, gray, 
     hoverColorText, hoverColorBackground } from '../styles/colors';
+import { useSelector } from 'react-redux';
 
 export const Table = () => {
     const [ dinners, setDinners ] = useState([]);
     const [ activeAddDinner, setActiveAddDinner ] = useState(false);
     const [ activeFood, setActiveFood ] = useState(false);
+    const state = useSelector( state => state );
     
     useEffect(() =>{
         setDinners([
@@ -34,7 +36,7 @@ export const Table = () => {
                     <AddDinner handleClose={fnBtnActiveAddDinner}/> 
                 }
                 <h2>Comensales</h2>
-                { dinners && dinners.map( (d,index) => <Item>
+                { state && state.dinners.map( (d,index) => <Item>
                     <Btn
                         onClick={ e => {
                             e.preventDefault();

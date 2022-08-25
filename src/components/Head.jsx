@@ -1,8 +1,11 @@
 import { Link, animateScroll as scroll } from "react-scroll";
 import styled from "styled-components";
-import { primaryColor } from '../styles/colors';
+import { useSelector } from 'react-redux';
+import { primaryColor, gray, 
+    hoverColorText, hoverColorBackground } from '../styles/colors';
 
 export const Head = () => {
+    const state = useSelector( state => state ); 
     return (
         <Container>
             <div className={'group'}>
@@ -48,6 +51,9 @@ export const Head = () => {
                     duration={500}
                     >Acerca
                 </Link>
+                <Btn onClick={ ()=> console.log(state) }>
+                    State
+                </Btn>
             </div>
         </Container>
     )
@@ -86,5 +92,18 @@ const Container = styled.div`
         color: black;
         background-color: #839d92;
         border-radius: 1.3em;
+    }
+`;
+
+const Btn = styled.button`
+    background-color: ${gray};
+    color: white;
+    margin: 0.5em 0.5em;
+    padding: 0.3em 0.5em;
+    border-radius: 2em;
+    box-shadow: none;
+    :hover{
+        background-color: ${hoverColorText};
+        color: ${hoverColorBackground};
     }
 `;

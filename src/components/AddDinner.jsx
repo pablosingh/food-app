@@ -1,10 +1,13 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 import { primaryColor, gray, hoverColorBackground, hoverColorText } from '../styles/colors';
+import { addDinners } from '../redux/actions'; 
+import { useDispatch } from "react-redux";
 
 export const AddDinner = props => {
     const [ dinners, setDinners ] = useState([]);
     const [ data, setData ] = useState({name: ''});
+    const dispatch = useDispatch();
 
     const changing = e => {
         e.preventDefault();
@@ -18,6 +21,7 @@ export const AddDinner = props => {
         setDinners(
             [...dinners, data.name]
         );
+        dispatch(addDinners(data.name));
         setData({name: ''});
     };
     const submiting = e => {

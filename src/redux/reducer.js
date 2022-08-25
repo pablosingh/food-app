@@ -16,7 +16,8 @@ import {
     SEARCH_BY_ID,
     EDIT,
     DELETE_POKEMON,
-    SET_LOADING
+    SET_LOADING,
+    ADD_DINNERS
 } from './actions';
 
 import { order } from './functionsFilters';
@@ -28,10 +29,12 @@ const initialState = {
     subPagesCards: [],
     maxPageCards: 0,
     types: [],
-    // ******************
+    // ******************************
     amountForPage: 12,
     dog: {},
-    loading: true
+    loading: true,
+    // ******************************
+    dinners: []
 };
 
 export default (state = initialState, action) => {
@@ -167,6 +170,12 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 loading
+            };
+            // ///////////////////////////////////
+        case ADD_DINNERS:
+            state.dinners.push(action.payload);
+            return {
+                ...state
             };
         default: return {...state};
     

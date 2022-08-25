@@ -17,6 +17,9 @@ export const ERROR_POKEMON = { name: 'ERROR - NOMBRE DUPLICADO' };
 export const EDIT = 'EDIT';
 export const DELETE_POKEMON = 'DELETE_POKEMON';
 export const SET_LOADING = 'SET_LOADING';
+// /////////////////////////////////////////////
+export const ADD_DINNERS = 'ADD_DINNERS';
+
 
 export function loadCards(){
     return async function (dispatch){
@@ -87,3 +90,5 @@ export const addToCards = (dog) => ({ type: ADD_TO_CARDS, payload: dog });
 // export const edit = (pokemon) => ({ type: EDIT, payload: pokemon }); 
 // export const deletePokemon = (idApi) => ({ type: DELETE_POKEMON, payload: idApi });
 export const setLoading = () => ({ type: SET_LOADING, payload: null});
+
+export const addDinners = (dinners) => ({ type: ADD_DINNERS, payload: dinners });
