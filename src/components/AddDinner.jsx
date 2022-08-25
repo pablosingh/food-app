@@ -2,7 +2,7 @@ import { useState } from 'react';
 import styled from 'styled-components';
 import { primaryColor, gray, hoverColorBackground, hoverColorText } from '../styles/colors';
 
-export const AddDinner = () => {
+export const AddDinner = props => {
     const [ dinners, setDinners ] = useState([]);
     const [ data, setData ] = useState({name: ''});
 
@@ -28,7 +28,16 @@ export const AddDinner = () => {
     return (
         <Container>
             <Card>
-                <h3>Agregando Comensales</h3>
+                <TitleAndClose>
+                    <h3>Agregando Comensales</h3>
+                    <Btn
+                        onClick={e =>{
+                            e.preventDefault();
+                            props?.handleClose();
+                            console.log('cerrar');
+                        }}
+                        >X</Btn>
+                </TitleAndClose>
                 <div className="nameAndInput">
                     <label htmlFor="name">Nombre : </label>
                     <input type="text" name='name' 
@@ -49,13 +58,16 @@ export const AddDinner = () => {
 };
 
 const Container = styled.div`
-    width: 100%; 
-    height: 100%;
+    width: 100vw; 
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: pink;
+    background-color: rgba(0,0,0,0.5);
 `;
 
 const Card = styled.div`
@@ -92,4 +104,23 @@ const Card = styled.div`
         background-color: ${hoverColorText};
         color: ${hoverColorBackground};
     }
+`;
+
+const Btn = styled.button`
+    background-color: ${gray};
+    color: white;
+    margin: 0.5em 0.5em;
+    padding: 0.3em 0.5em;
+    border-radius: 2em;
+    box-shadow: none;
+    :hover{
+        background-color: ${hoverColorText};
+        color: ${hoverColorBackground};
+    }
+`;
+
+const TitleAndClose = styled.div`
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
 `;

@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import { NavBarPhone } from './NavBarPhone';
 import { Head } from './Head';
 import { Cards } from './Cards';
-import { AddDinner } from './AddDinner';
 import { Table } from './Table';
 
 export const Body = () => {
@@ -11,9 +10,7 @@ export const Body = () => {
             <Head/>
             <NavBarPhone/>
             <SubContainer>
-                <Cards/>
-                {/* <AddDinner/> */}
-                {/* <Table/> */}
+                <Table/>
             </SubContainer>
         </Container>
     )

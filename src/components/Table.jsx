@@ -1,9 +1,15 @@
 import { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { primaryColor, gray, hoverColorText, hoverColorBackground } from '../styles/colors';
+import { AddDinner } from './AddDinner';
+import { Cards } from './Cards';
+import { primaryColor, gray, 
+    hoverColorText, hoverColorBackground } from '../styles/colors';
 
 export const Table = () => {
     const [ dinners, setDinners ] = useState([]);
+    const [ activeAddDinner, setActiveAddDinner ] = useState(false);
+    const [ activeFood, setActiveFood ] = useState(false);
+    
     useEffect(() =>{
         setDinners([
             'Pablo',
@@ -12,16 +18,24 @@ export const Table = () => {
             'Singh'
         ]);
     }, []);
-    const openItem = e => {
-        e.preventDefault();
-        console.log('Item clicked');
-    }
+
+    const openItem = () => {
+        setActiveFood(!activeFood);
+    };
+
+    const fnBtnActiveAddDinner = () => {
+        setActiveAddDinner(!activeAddDinner);
+    };
+
     return (
         <Container>
             <Card>
+                { activeAddDinner && 
+                    <AddDinner handleClose={fnBtnActiveAddDinner}/> 
+                }
                 <h2>Comensales</h2>
                 { dinners && dinners.map( (d,index) => <Item>
-                    <button className="btn"
+                    <Btn
                         onClick={ e => {
                             e.preventDefault();
                             console.log(index);
@@ -30,12 +44,16 @@ export const Table = () => {
                             );
                         }}
                         >X
-                    </button>
+                    </Btn>
                     <Name onClick={openItem}>
                         {d} 
                     </Name>
                 </Item>) }
+                <Btn onClick={fnBtnActiveAddDinner}>Agregar</Btn>
             </Card>
+            { activeFood && 
+                <Cards handleClose={openItem}/>    
+            }
         </Container>
     )
 };
@@ -73,18 +91,6 @@ const Item = styled.div`
     color: black;
     padding: 0.2em 1em;
     margin: 0.2em 0.2em;
-    .btn{
-        background-color: ${gray};
-        color: white;
-        margin: 0.5em 0.5em;
-        padding: 0.3em 0.5em;
-        border-radius: 2em;
-        box-shadow: none;
-    }
-    .btn:hover{
-        background-color: ${hoverColorText};
-        color: ${hoverColorBackground};
-    }
 `;
 
 const Name = styled.div`
@@ -92,4 +98,17 @@ const Name = styled.div`
     display: flex;
     align-items: center;
     justify-content: flex-start;
+`;
+
+const Btn = styled.button`
+    background-color: ${gray};
+    color: white;
+    margin: 0.5em 0.5em;
+    padding: 0.3em 0.5em;
+    border-radius: 2em;
+    box-shadow: none;
+    :hover{
+        background-color: ${hoverColorText};
+        color: ${hoverColorBackground};
+    }
 `;
