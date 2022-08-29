@@ -1,11 +1,18 @@
 import { Link, animateScroll as scroll } from "react-scroll";
 import styled from "styled-components";
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { primaryColor, gray, 
     hoverColorText, hoverColorBackground } from '../styles/colors';
+import { useEffect } from "react";
+import { loadCards } from "../redux/actions";
 
 export const Head = () => {
     const state = useSelector( state => state ); 
+    const dispatch = useDispatch();
+    useEffect( ()=> {
+        // console.log("Head");
+        dispatch( loadCards() );
+    }, []);
     return (
         <Container>
             <div className={'group'}>

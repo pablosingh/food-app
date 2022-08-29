@@ -25,28 +25,47 @@ export const REMOVE_DINNER = 'REMOVE_DINNER';
 export function loadCards(){
     return async function (dispatch){
         const all = [];
-        dispatch( { type: SET_LOADING, payload: true } );
+        const promesas = [];
+        const subPromesas = [];
+        const category = `beef`;
+        console.log('load cards');
+        // dispatch( { type: SET_LOADING, payload: true } );
         try {
-            await fetch( `https://api.thedogapi.com/v1/breeds` )
+            await fetch( `https://www.themealdb.com/api/json/v1/1/filter.php?c=${category}` )
                 .then( js => js.json() )
-                .then( arrayJson => { 
-                    console.log(arrayJson);
-                    arrayJson.forEach( a => {
-                        all.push({
-                            id: a.id,
-                            name: a.name,
-                            height: a.height.metric,
-                            weight: a.weight.metric,
-                            bred_for: a.bred_for,
-                            breed_group: a.breed_group,
-                            life_span: a.life_span,
-                            temperament: a.temperament,
-                            origin: a.origin,
-                            image: a.image.url
-                        });
-                    } );
-                    dispatch( { type: LOAD_CARDS, payload: all } ) 
-                    dispatch( { type: SET_LOADING, payload: false } )
+                .then( arrayJson => {
+                    arrayJson.meals.forEach(element => {
+                        promesas.push( fetch(
+                            `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${element.idMeal}`
+                            ) )
+                    })
+                })
+                .then( () => { 
+                    Promise.all(promesas)
+                        .then( values => values.forEach( v => subPromesas.push( v.json() ) ) )
+                        .then( () => {
+                            Promise.all(subPromesas)
+                                .then( foods => {
+                                    foods.forEach( f => {
+                                        all.push({
+                                            idMeal: f.meals[0].idMeal,
+                                            strArea: f.meals[0].strArea,
+                                            strCategory: f.meals[0].strCategory,
+                                            strInstructions: f.meals[0].strInstructions,
+                                            strMeal: f.meals[0].strMeal,
+                                            strMealThumb: f.meals[0].strMealThumb,
+                                            strSource: f.meals[0].strSource,
+                                            strYoutube: f.meals[0].strYoutube,
+                                        });
+                                    });
+                                })
+                                .then( () => dispatch( { type: LOAD_CARDS, payload: all } ) )
+                                // .then( () => console.log(all) )
+                                .catch( err => console.error(err) );    
+                        })
+                        .catch( err => console.error(err) );
+                    // dispatch( { type: LOAD_CARDS, payload: all } ) 
+                    // dispatch( { type: SET_LOADING, payload: false } )
                 })
                 .catch( err => console.error(err) );
         } catch (e) {

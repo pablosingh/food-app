@@ -4,23 +4,10 @@ import { SearchBar } from './SearchBar';
 import styled from 'styled-components';
 import { primaryColor, gray, 
     hoverColorText, hoverColorBackground } from '../styles/colors';
+import { useSelector } from 'react-redux';
 
 export const Cards = props => {
-    // const state = useSelector( state => state );
-    const arreglo = [
-        {
-            id: 0,
-            name: 'nombre 1',
-            description: 'description 1',
-            image: 'imagen 1'
-        },
-        {
-            id: 1,
-            name: 'nombre 2',
-            description: 'description 2',
-            image: 'imagen 2'
-        },
-    ];
+    const state = useSelector( state => state );
     return (
         <Container>
             <BtnClose
@@ -32,7 +19,7 @@ export const Cards = props => {
                 >X</BtnClose>
             <SearchBar/>
             <CardsContainer>
-                { arreglo.map( (c,i) => <Card food={c} key={i}/>) }
+                { state.cards && state.cards.map( (c,i) => <Card food={c} key={i}/>) }
             </CardsContainer>
         </Container>
     )
@@ -40,8 +27,8 @@ export const Cards = props => {
 
 const Container = styled.div`
     width: 100vw;
-    height: 100vh;
-    position: fixed;
+    min-height: 100vh;
+    position: relative;
     top: 0;
     left: 0;
     display: flex;

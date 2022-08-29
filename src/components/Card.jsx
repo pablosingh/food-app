@@ -4,13 +4,7 @@ import { primaryColor, gray, hoverColorText, hoverColorBackground } from '../sty
 // import { useDispatch } from "react-redux";
 
 export const Card = props => {
-    // const dispatch = useDispatch();
-    const { 
-        id,
-        name,
-        description,
-        image
-    } = props.food;
+    const { food } = props;
     return (
         <Container>
             {/* <Link to="/search" 
@@ -20,15 +14,18 @@ export const Card = props => {
                     console.log(id);
                 }}> */}
                 <div className="linkFood">
-                    <h4 className='title'>  {name}</h4>
-                    <img src={image} alt="Food" className='image'/>
+                    <h4 className='title'>  {food?.strMeal}</h4>
+                    <img src={food?.strMealThumb} alt="Food" className='image'/>
                     <span className='description'>
-                        <p className='black'>Descripcion: </p>
-                            {description}
-                        </span>
+                        <p className='black'>Detalles: </p>
+                        <p>{food?.strArea}</p>
+                        <p>{food?.strCategory}</p>
+                        <p><a href={food?.strSource}>Web</a></p>
+                        <p><a href={food?.strYoutube}>Youtube</a></p>
+                    </span>
                     <button className='btnCard'
                         onClick={ () => {
-                            console.log(id);
+                            console.log(food?.idMeal);
                         }}>Agregar
                     </button>
                 </div>
