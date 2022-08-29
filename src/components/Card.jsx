@@ -1,9 +1,12 @@
 import styled from 'styled-components';
+import { addFoodDinner } from '../redux/actions';
+import { useSelector, useDispatch } from 'react-redux';
 // import { Link } from 'react-router-dom';
 import { primaryColor, gray, hoverColorText, hoverColorBackground } from '../styles/colors';
 // import { useDispatch } from "react-redux";
 
 export const Card = props => {
+    const dispatch = useDispatch();
     const { food } = props;
     return (
         <Container>
@@ -26,6 +29,7 @@ export const Card = props => {
                     <button className='btnCard'
                         onClick={ () => {
                             console.log(food?.idMeal);
+                            dispatch(addFoodDinner(food?.idMeal));
                         }}>Agregar
                     </button>
                 </div>

@@ -18,7 +18,9 @@ import {
     DELETE_POKEMON,
     SET_LOADING,
     ADD_DINNERS,
-    REMOVE_DINNER
+    REMOVE_DINNER,
+    SET_ACTUAL_DINNER,
+    ADD_FOOD_DINNER
 } from './actions';
 
 import { order } from './functionsFilters';
@@ -36,7 +38,8 @@ const initialState = {
     loading: true,
     // ******************************
     dinners: [],
-    id: 1
+    id: 1,
+    actualDinner: 0
 };
 
 export default (state = initialState, action) => {
@@ -189,6 +192,18 @@ export default (state = initialState, action) => {
             return{
                 ...state,
                 dinners: state.dinners.filter( d => d.id != action.payload )
+            };
+        case SET_ACTUAL_DINNER:
+            return {
+                ...state,
+                actualDinner: action.payload
+            };
+        case ADD_FOOD_DINNER:
+            state.dinners[state.actualDinner-1].foods.push(action.payload);
+            console.log(action.payload);
+            return {
+                ...state,
+                dinners: state.dinners
             };
         default: return {...state};
     

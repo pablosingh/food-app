@@ -4,7 +4,7 @@ import { AddDinner } from './AddDinner';
 import { Cards } from './Cards';
 import { primaryColor, gray, 
     hoverColorText, hoverColorBackground } from '../styles/colors';
-import { removeDinner } from '../redux/actions';
+import { removeDinner, setActualDinner } from '../redux/actions';
 import { useSelector, useDispatch } from 'react-redux';
 
 export const Table = () => {
@@ -42,14 +42,13 @@ export const Table = () => {
                     <Btn
                         onClick={ e => {
                             e.preventDefault();
-                            // console.log(index);
-                            // setDinners(
-                            //     dinners.filter( (d,i) => index != i )
-                            // );
                             dispatch(removeDinner(d.id));
                         }}>X
                     </Btn>
-                    <Name onClick={openItem}>
+                    <Name onClick={() => {
+                        openItem();
+                        dispatch(setActualDinner(d.id));
+                    }}>
                         {d.name} 
                     </Name>
                 </Item>) }
