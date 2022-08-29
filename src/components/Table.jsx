@@ -4,13 +4,15 @@ import { AddDinner } from './AddDinner';
 import { Cards } from './Cards';
 import { primaryColor, gray, 
     hoverColorText, hoverColorBackground } from '../styles/colors';
-import { useSelector } from 'react-redux';
+import { removeDinner } from '../redux/actions';
+import { useSelector, useDispatch } from 'react-redux';
 
 export const Table = () => {
     const [ dinners, setDinners ] = useState([]);
     const [ activeAddDinner, setActiveAddDinner ] = useState(false);
     const [ activeFood, setActiveFood ] = useState(false);
     const state = useSelector( state => state );
+    const dispatch = useDispatch();
     
     useEffect(() =>{
         setDinners([
@@ -40,15 +42,15 @@ export const Table = () => {
                     <Btn
                         onClick={ e => {
                             e.preventDefault();
-                            console.log(index);
-                            setDinners(
-                                dinners.filter( (d,i) => index != i )
-                            );
-                        }}
-                        >X
+                            // console.log(index);
+                            // setDinners(
+                            //     dinners.filter( (d,i) => index != i )
+                            // );
+                            dispatch(removeDinner(d.id));
+                        }}>X
                     </Btn>
                     <Name onClick={openItem}>
-                        {d} 
+                        {d.name} 
                     </Name>
                 </Item>) }
                 <Btn onClick={fnBtnActiveAddDinner}>Agregar</Btn>

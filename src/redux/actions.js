@@ -19,6 +19,7 @@ export const DELETE_POKEMON = 'DELETE_POKEMON';
 export const SET_LOADING = 'SET_LOADING';
 // /////////////////////////////////////////////
 export const ADD_DINNERS = 'ADD_DINNERS';
+export const REMOVE_DINNER = 'REMOVE_DINNER';
 
 
 export function loadCards(){
@@ -91,4 +92,5 @@ export const addToCards = (dog) => ({ type: ADD_TO_CARDS, payload: dog });
 // export const deletePokemon = (idApi) => ({ type: DELETE_POKEMON, payload: idApi });
 export const setLoading = () => ({ type: SET_LOADING, payload: null});
 
-export const addDinners = (dinners) => ({ type: ADD_DINNERS, payload: dinners });
+export const addDinner = (dinner) => ({ type: ADD_DINNERS, payload: dinner });
+export const removeDinner = (id) => ({ type: REMOVE_DINNER, payload: id });

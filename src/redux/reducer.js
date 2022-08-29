@@ -17,7 +17,8 @@ import {
     EDIT,
     DELETE_POKEMON,
     SET_LOADING,
-    ADD_DINNERS
+    ADD_DINNERS,
+    REMOVE_DINNER
 } from './actions';
 
 import { order } from './functionsFilters';
@@ -34,7 +35,8 @@ const initialState = {
     dog: {},
     loading: true,
     // ******************************
-    dinners: []
+    dinners: [],
+    id: 1
 };
 
 export default (state = initialState, action) => {
@@ -173,9 +175,20 @@ export default (state = initialState, action) => {
             };
             // ///////////////////////////////////
         case ADD_DINNERS:
-            state.dinners.push(action.payload);
+            const d = {
+                name: action.payload,
+                id: state.id,
+                foods: []
+            };
+            state.dinners.push(d);
             return {
-                ...state
+                ...state,
+                id: state.id +1,
+            };
+        case REMOVE_DINNER: 
+            return{
+                ...state,
+                dinners: state.dinners.filter( d => d.id != action.payload )
             };
         default: return {...state};
     

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 import { primaryColor, gray, hoverColorBackground, hoverColorText } from '../styles/colors';
-import { addDinners } from '../redux/actions'; 
+import { addDinner } from '../redux/actions'; 
 import { useDispatch } from "react-redux";
 
 export const AddDinner = props => {
@@ -21,7 +21,7 @@ export const AddDinner = props => {
         setDinners(
             [...dinners, data.name]
         );
-        dispatch(addDinners(data.name));
+        dispatch(addDinner(data.name));
         setData({name: ''});
     };
     const submiting = e => {
@@ -36,9 +36,7 @@ export const AddDinner = props => {
                     <h3>Agregando Comensales</h3>
                     <Btn
                         onClick={e =>{
-                            e.preventDefault();
                             props?.handleClose();
-                            console.log('cerrar');
                         }}
                         >X</Btn>
                 </TitleAndClose>
@@ -54,7 +52,10 @@ export const AddDinner = props => {
                     <button className="btn" 
                         onClick={adding}>Agregar</button>
                     <button className="btn"
-                        onClick={submiting}>Listo</button>
+                        onClick={e =>{
+                            props?.handleClose();
+                        }}
+                        >Listo</button>
                 </div>
             </Card>
         </Container>
@@ -107,6 +108,9 @@ const Card = styled.div`
     .btn:hover{
         background-color: ${hoverColorText};
         color: ${hoverColorBackground};
+    }
+    *{
+        padding: 0.5em 0.5em;
     }
 `;
 
