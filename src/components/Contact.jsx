@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 
-export const About = () => {
+export const Contact = () => {
     return (
         <Container>
-            About
+            Contact
         </Container>
     )
 };

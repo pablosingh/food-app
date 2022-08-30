@@ -5,17 +5,20 @@ import { primaryColor, gray,
     hoverColorText, hoverColorBackground } from '../styles/colors';
 import { useEffect } from "react";
 import { loadCards } from "../redux/actions";
+// import { Link } from 'react-router-dom';
 
 export const Head = () => {
     const state = useSelector( state => state ); 
     const dispatch = useDispatch();
     useEffect( ()=> {
-        // console.log("Head");
         dispatch( loadCards() );
     }, []);
     return (
         <Container>
             <div className={'group'}>
+                {/* <Link to="/" className={``}>Menu</Link>
+                <Link to="/about" className={``}>Acerca</Link>
+                <Link to="/contact" className={``}>Contacto</Link> */}
                 <Link
                     className={'linkClass'}
                     activeClass={'active'}

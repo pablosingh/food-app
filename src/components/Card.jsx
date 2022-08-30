@@ -29,7 +29,10 @@ export const Card = props => {
                     <button className='btnCard'
                         onClick={ () => {
                             console.log(food?.idMeal);
-                            dispatch(addFoodDinner(food?.idMeal));
+                            dispatch(addFoodDinner({
+                                idMeal: food?.idMeal,
+                                strMeal: food?.strMeal
+                            }));
                         }}>Agregar
                     </button>
                 </div>

@@ -39,22 +39,13 @@ export const Table = () => {
                     <AddDinner handleClose={fnBtnActiveAddDinner}/> 
                 }
                 <h2>Comensales</h2>
-                { state && state.dinners.map( (d,index) => <Item>
-                    <Btn
-                        onClick={ e => {
-                            e.preventDefault();
-                            dispatch(removeDinner(d.id));
-                        }}>X
-                    </Btn>
-                    {/* <Name onClick={() => {
-                        openItem();
-                        dispatch(setActualDinner(d.id));
-                    }}>
-                        {d.name} 
-                    </Name> */}
+                { state && state.dinners.map( d => <Item>
                     <Dinner dinner={d} handleClick={openItem}/>
                 </Item>) }
-                <Btn onClick={fnBtnActiveAddDinner}>Agregar</Btn>
+                <div className="">
+                    <Btn onClick={fnBtnActiveAddDinner}>Agregar</Btn>
+                    <Btn onClick={()=>{}}>Ordernar</Btn>
+                </div>
             </Card>
             { activeFood && 
                 <Cards handleClose={openItem}/>    
@@ -70,7 +61,6 @@ const Container = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: pink;
 `;
 
 const Card = styled.div`

@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+// import { Route, Routes } from 'react-router-dom';
 import { NavBarPhone } from './NavBarPhone';
 import { Head } from './Head';
 import { Cards } from './Cards';
@@ -7,11 +8,19 @@ import { Table } from './Table';
 export const Body = () => {
     return (
         <Container>
-            <Head/>
-            <NavBarPhone/>
-            <SubContainer>
-                <Table/>
-            </SubContainer>
+            {/* <Routes> */}
+                <Head/>
+                <NavBarPhone/>
+                <SubContainer>
+                    {/* <Route exact path="/"> */}
+                        <Table/>
+                    {/* </Route>      */}
+                    {/* <Route exact path="/"> */}
+                    {/* </Route>  */}
+                    {/* <Route exact path="/"> */}
+                    {/* </Route>     */}
+                </SubContainer>
+            {/* </Routes> */}
         </Container>
     )
 };
@@ -27,5 +36,4 @@ const SubContainer = styled.div`
     margin: 0em;
     width: 100%;
     height: 100%;
-    background-color: green;
 `;
