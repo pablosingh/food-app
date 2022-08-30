@@ -1,21 +1,20 @@
 import React, { useState } from 'react';
-import { Link } from 'react-scroll';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import BurguerButton from './BurguerButton';
 
 export const NavBarPhone = () => {
   const [clicked, setClicked] = useState(false);
   const handleClick = () => {
-    //cuando esta true lo pasa a false y viceversa
     setClicked(!clicked)
   }
   return (
     <>
       <NavContainer>
         <div className={`links ${clicked ? 'active' : ''}`}>
-          <Link onClick={handleClick} to='about'>Menu</Link>
-          <Link onClick={handleClick} to='skills'>Contacto</Link>
-          <Link onClick={handleClick} to='proyects'>Acerca</Link>
+          <Link to="/" onClick={handleClick} className={`linkClass`}>Menu</Link>
+          <Link to="/about" onClick={handleClick} className={`linkClass`}>Acerca</Link>
+          <Link to="/contact" onClick={handleClick} className={`linkClass`}>Contacto</Link>
         </div>
         <div className='burguer'>
           <BurguerButton clicked={clicked} handleClick={handleClick} />

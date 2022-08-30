@@ -1,11 +1,11 @@
-import { Link, animateScroll as scroll } from "react-scroll";
+// import { Link, animateScroll as scroll } from "react-scroll";
 import styled from "styled-components";
 import { useSelector, useDispatch } from 'react-redux';
 import { primaryColor, gray, 
     hoverColorText, hoverColorBackground } from '../styles/colors';
 import { useEffect } from "react";
 import { loadCards } from "../redux/actions";
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 export const Head = () => {
     const state = useSelector( state => state ); 
@@ -16,55 +16,16 @@ export const Head = () => {
     return (
         <Container>
             <div className={'group'}>
-                {/* <Link to="/" className={``}>Menu</Link>
-                <Link to="/about" className={``}>Acerca</Link>
-                <Link to="/contact" className={``}>Contacto</Link> */}
-                <Link
-                    className={'linkClass'}
-                    activeClass={'active'}
-                    to="name"
-                    spy={true}
-                    smooth={true}
-                    offset={-70}
-                    duration={500}
-                    >Food App
-                </Link>
+                <Link to="/" className={`linkClass`}>- Food App -</Link>
             </div>
             <div className={'group'}>
-                <Link
-                    className={'linkClass'}
-                    activeClass={'active'}
-                    to="about"
-                    spy={true}
-                    smooth={true}
-                    offset={-70}
-                    duration={500}
-                    >Menu
-                </Link>
-                <Link
-                    className={'linkClass'}
-                    activeClass={'active'}
-                    to="proyects"
-                    spy={true}
-                    smooth={true}
-                    offset={-70}
-                    duration={500}
-                    >Contacto
-                </Link>
-                <Link
-                    className={'linkClass'}
-                    activeClass={'active'}
-                    to="contact"
-                    spy={true}
-                    smooth={true}
-                    offset={-70}
-                    duration={500}
-                    >Acerca
-                </Link>
-                <Btn onClick={ ()=> console.log(state) }>
-                    State
-                </Btn>
+                <Link to="/" className={`linkClass`}>Menu</Link>
+                <Link to="/about" className={`linkClass`}>Acerca</Link>
+                <Link to="/contact" className={`linkClass`}>Contacto</Link>
             </div>
+                {/* <Btn onClick={ ()=> console.log(state) }>
+                    State
+                </Btn> */}
         </Container>
     )
 };
@@ -92,6 +53,7 @@ const Container = styled.div`
         padding: 0.3em 0.7em;
         font-size: 1.2em;
         border-radius: 1.3em;
+        text-decoration: none;
     }
     .linkClass:hover {
         color: white;

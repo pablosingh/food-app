@@ -1,26 +1,23 @@
 import styled from 'styled-components';
-// import { Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import { NavBarPhone } from './NavBarPhone';
 import { Head } from './Head';
-import { Cards } from './Cards';
 import { Table } from './Table';
+import { About } from './About';
+import { Contact } from './Contact';
 
 export const Body = () => {
     return (
         <Container>
-            {/* <Routes> */}
                 <Head/>
                 <NavBarPhone/>
                 <SubContainer>
-                    {/* <Route exact path="/"> */}
-                        <Table/>
-                    {/* </Route>      */}
-                    {/* <Route exact path="/"> */}
-                    {/* </Route>  */}
-                    {/* <Route exact path="/"> */}
-                    {/* </Route>     */}
+                <Routes>
+                    <Route path="/" element={<Table />} />
+                    <Route path="/about" element={<About />} />
+                    <Route path="/contact" element={<Contact />} />
+                </Routes>  
                 </SubContainer>
-            {/* </Routes> */}
         </Container>
     )
 };
