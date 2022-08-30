@@ -199,7 +199,8 @@ export default (state = initialState, action) => {
                 actualDinner: action.payload
             };
         case ADD_FOOD_DINNER:
-            state.dinners[state.actualDinner-1].foods.push(action.payload);
+            let person = state.dinners.find( d => d.id == state.actualDinner );
+            person.foods.push(action.payload);
             console.log(action.payload);
             return {
                 ...state,

@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { AddDinner } from './AddDinner';
 import { Cards } from './Cards';
+import { Dinner } from './Dinner';
 import { primaryColor, gray, 
     hoverColorText, hoverColorBackground } from '../styles/colors';
 import { removeDinner, setActualDinner } from '../redux/actions';
@@ -45,12 +46,13 @@ export const Table = () => {
                             dispatch(removeDinner(d.id));
                         }}>X
                     </Btn>
-                    <Name onClick={() => {
+                    {/* <Name onClick={() => {
                         openItem();
                         dispatch(setActualDinner(d.id));
                     }}>
                         {d.name} 
-                    </Name>
+                    </Name> */}
+                    <Dinner dinner={d} handleClick={openItem}/>
                 </Item>) }
                 <Btn onClick={fnBtnActiveAddDinner}>Agregar</Btn>
             </Card>
