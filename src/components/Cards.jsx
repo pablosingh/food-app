@@ -5,6 +5,8 @@ import styled from 'styled-components';
 import { primaryColor, gray, 
     hoverColorText, hoverColorBackground } from '../styles/colors';
 import { useSelector } from 'react-redux';
+// import { BiArrowBack } from 'react-icons/bi';
+import { AiOutlineArrowLeft } from 'react-icons/ai';
 
 export const Cards = props => {
     const state = useSelector( state => state );
@@ -16,7 +18,7 @@ export const Cards = props => {
                     props?.handleClose();
                     console.log('cerrar');
                 }}
-                >X</BtnClose>
+                ><AiOutlineArrowLeft/></BtnClose>
             <SearchBar/>
             <CardsContainer>
                 { state.cards && state.cards.map( (c,i) => <Card food={c} key={i}/>) }
@@ -34,8 +36,10 @@ const Container = styled.div`
     display: flex;
     flex-direction: column;
     padding: 0em 0em;
+    margin: 0;
     background-color: rgba( 0,0,0,0.7 );
     z-index: 1;
+    transition: all .4s ease ;
 `;
 
 const CardsContainer = styled.div`

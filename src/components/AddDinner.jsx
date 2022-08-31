@@ -104,6 +104,7 @@ const Card = styled.div`
         margin: 0.5em 0.5em;
         padding: 0.5em 1em;
         border-radius: 2em;
+        transition: all .4s ease ;
     }
     .btn:hover{
         background-color: ${hoverColorText};

@@ -1,28 +1,28 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import styled from 'styled-components';
 import { AddDinner } from './AddDinner';
 import { Cards } from './Cards';
 import { Dinner } from './Dinner';
 import { primaryColor, gray, 
     hoverColorText, hoverColorBackground } from '../styles/colors';
-import { removeDinner, setActualDinner } from '../redux/actions';
+// import { removeDinner, setActualDinner } from '../redux/actions';
 import { useSelector, useDispatch } from 'react-redux';
 
 export const Table = () => {
-    const [ dinners, setDinners ] = useState([]);
+    // const [ dinners, setDinners ] = useState([]);
     const [ activeAddDinner, setActiveAddDinner ] = useState(false);
     const [ activeFood, setActiveFood ] = useState(false);
     const state = useSelector( state => state );
-    const dispatch = useDispatch();
+    // const dispatch = useDispatch();
     
-    useEffect(() =>{
-        setDinners([
-            'Pablo',
-            'Roberto',
-            'Manuel',
-            'Singh'
-        ]);
-    }, []);
+    // useEffect(() =>{
+    //     setDinners([
+    //         'Pablo',
+    //         'Roberto',
+    //         'Manuel',
+    //         'Singh'
+    //     ]);
+    // }, []);
 
     const openItem = () => {
         setActiveFood(!activeFood);
@@ -34,21 +34,23 @@ export const Table = () => {
 
     return (
         <Container>
-            <Card>
-                { activeAddDinner && 
-                    <AddDinner handleClose={fnBtnActiveAddDinner}/> 
-                }
-                <h2>Comensales</h2>
-                { state && state.dinners.map( d => <Item>
-                    <Dinner dinner={d} handleClick={openItem}/>
-                </Item>) }
-                <div className="">
-                    <Btn onClick={fnBtnActiveAddDinner}>Agregar</Btn>
-                    <Btn onClick={()=>{}}>Ordernar</Btn>
-                </div>
-            </Card>
             { activeFood && 
                 <Cards handleClose={openItem}/>    
+            }
+            { activeAddDinner && 
+                <AddDinner handleClose={fnBtnActiveAddDinner}/> 
+            }
+            { !activeFood && 
+                <Card>
+                    <h2>Comensales</h2>
+                    { state && state.dinners.map( d => <Item>
+                        <Dinner dinner={d} handleClick={openItem}/>
+                    </Item>) }
+                    <div className="">
+                        <Btn onClick={fnBtnActiveAddDinner}>Agregar</Btn>
+                        <Btn onClick={()=>{}}>Ordernar</Btn>
+                    </div>
+                </Card>
             }
         </Container>
     )
@@ -88,12 +90,12 @@ const Item = styled.div`
     margin: 0.2em 0.2em;
 `;
 
-const Name = styled.div`
-    width: 90%;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-`;
+// const Name = styled.div`
+//     width: 90%;
+//     display: flex;
+//     align-items: center;
+//     justify-content: flex-start;
+// `;
 
 const Btn = styled.button`
     background-color: ${gray};
@@ -102,6 +104,7 @@ const Btn = styled.button`
     padding: 0.3em 0.5em;
     border-radius: 2em;
     box-shadow: none;
+    transition: all .4s ease ;
     :hover{
         background-color: ${hoverColorText};
         color: ${hoverColorBackground};
