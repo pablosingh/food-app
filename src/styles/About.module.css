@@ -1,0 +1,31 @@
+
+.card{
+    width: 50%;
+    min-height: 40%;
+    background-color: #edfafd;
+    border-radius: 1em;
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1em;
+}
+/* .btn{
+    color: white;
+    margin: 0.3em 0.7em;
+    padding: 0.3em 0.7em;
+    font-size: 1em;
+    border-radius: 1em;
+    background-color: #3a4d54;
+}
+
+.btn:hover {
+    color: black;
+    font-weight: bold;
+    cursor: pointer;
+    background-color: #839d92;
+} */
+.divBtnDirections{
+    margin-top: 1em;
+}

@@ -4,7 +4,8 @@ import { NavBarPhone } from './NavBarPhone';
 import { Head } from './Head';
 import { Table } from './Table';
 import { About } from './About';
-import { Contact } from './Contact';
+// import { Contact } from './Contact';
+import { Contact } from './Contact2';
 
 export const Body = () => {
     return (
@@ -15,6 +16,7 @@ export const Body = () => {
                 <Routes>
                     <Route path="/" element={<Table />} />
                     <Route path="/about" element={<About />} />
+                    {/* <Route path="/contact" element={<Contact />} /> */}
                     <Route path="/contact" element={<Contact />} />
                 </Routes>  
                 </SubContainer>
