@@ -1,37 +1,16 @@
 
 import { useEffect } from "react";
-import { collection, getDocs, addDoc } from "firebase/firestore";
-import db from '../firebase/firebaseConfig';
+import { getData, putData, deleteData } from "../firebase/services";
 
 export const TestFirebase = () => {
-    const getData = async() => {
-        try {
-            const data = await getDocs( collection( db, 'dinners' ) );
-            data.forEach( doc => {
-                console.log(doc.data());
-            });
-        } catch (error) {
-            console.error(error);
-        }
-    };
-    const postData = async() => {
-        try {
-            const docRef = await addDoc( collection( db, 'dinners' ), {
-                nombre: 'Manuel',
-                edad: '33'
-            } );
-            console.log( docRef );
-            console.log( docRef.id );
-        } catch (error) {   
-            console.error(error);
-        }
+    const fnTest = async() => {
+        // await putData( { nombre: 'xxx', edad: '32' } );
+        // await deleteData('il7baIBbx4o4nHz6o1kh');
+        console.log(await getData());
     };
     useEffect( () => {
-        // postData();
-        getData();
+        fnTest();
     },[]);
     return (
-        <div>
-            Test
-        </div>
+        <div>Test</div>
 )};

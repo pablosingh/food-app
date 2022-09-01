@@ -5,32 +5,27 @@ import { Cards } from './Cards';
 import { Dinner } from './Dinner';
 import { primaryColor, gray, 
     hoverColorText, hoverColorBackground } from '../styles/colors';
-// import { removeDinner, setActualDinner } from '../redux/actions';
 import { useSelector, useDispatch } from 'react-redux';
 import { TestFirebase } from './TestFirebase';
+import { putData } from '../firebase/services';
 
 export const Table = () => {
-    // const [ dinners, setDinners ] = useState([]);
     const [ activeAddDinner, setActiveAddDinner ] = useState(false);
     const [ activeFood, setActiveFood ] = useState(false);
     const state = useSelector( state => state );
-    // const dispatch = useDispatch();
-    
-    // useEffect(() =>{
-    //     setDinners([
-    //         'Pablo',
-    //         'Roberto',
-    //         'Manuel',
-    //         'Singh'
-    //     ]);
-    // }, []);
-
     const openItem = () => {
         setActiveFood(!activeFood);
     };
 
     const fnBtnActiveAddDinner = () => {
         setActiveAddDinner(!activeAddDinner);
+    };
+
+    const submiting = async() => {
+        state.dinners?.forEach( async d => {
+            await putData(d);
+        });
+        // await putData({ name: 'Pablo', idDinner: '1' });
     };
 
     return (
@@ -50,7 +45,10 @@ export const Table = () => {
                     </Item>) }
                     <div className="">
                         <Btn onClick={fnBtnActiveAddDinner}>Agregar</Btn>
-                        <Btn onClick={()=>{}}>Ordernar</Btn>
+                        <Btn onClick={()=>{
+                            console.log('Enviado');
+                            submiting();
+                        }}>Ordernar</Btn>
                     </div>
                 </Card>
             }
