@@ -7,6 +7,7 @@ import { primaryColor, gray,
     hoverColorText, hoverColorBackground } from '../styles/colors';
 // import { removeDinner, setActualDinner } from '../redux/actions';
 import { useSelector, useDispatch } from 'react-redux';
+import { TestFirebase } from './TestFirebase';
 
 export const Table = () => {
     // const [ dinners, setDinners ] = useState([]);
@@ -43,6 +44,7 @@ export const Table = () => {
             { !activeFood && 
                 <Card>
                     <h2>Comensales</h2>
+                    <TestFirebase/>
                     { state && state.dinners.map( d => <Item>
                         <Dinner dinner={d} handleClick={openItem}/>
                     </Item>) }

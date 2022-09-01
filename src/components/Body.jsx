@@ -6,6 +6,7 @@ import { Table } from './Table';
 import { About } from './About';
 // import { Contact } from './Contact';
 import { Contact } from './Contact2';
+// import { TestFirebase } from './TestFirebase';
 
 export const Body = () => {
     return (
@@ -14,7 +15,7 @@ export const Body = () => {
                 <NavBarPhone/>
                 <SubContainer>
                 <Routes>
-                    <Route path="/" element={<Table />} />
+                    <Route path="/" element={<Table/>} />
                     <Route path="/about" element={<About />} />
                     {/* <Route path="/contact" element={<Contact />} /> */}
                     <Route path="/contact" element={<Contact />} />
