@@ -1,6 +1,6 @@
 import { collection, getDocs, addDoc, doc, deleteDoc } from "firebase/firestore";
 import db from './firebaseConfig';
-const nameCollection = 'dinners';
+const nameCollection = 'tables';
 
 export const getData = async() => {
     try {

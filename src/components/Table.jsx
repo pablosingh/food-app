@@ -22,10 +22,10 @@ export const Table = () => {
     };
 
     const submiting = async() => {
-        state.dinners?.forEach( async d => {
-            await putData(d);
+        await putData({
+            pending: true,
+            dinners: state.dinners
         });
-        // await putData({ name: 'Pablo', idDinner: '1' });
     };
 
     return (
@@ -39,7 +39,7 @@ export const Table = () => {
             { !activeFood && 
                 <Card>
                     <h2>Comensales</h2>
-                    <TestFirebase/>
+                    {/* <TestFirebase/> */}
                     { state && state.dinners.map( d => <Item>
                         <Dinner dinner={d} handleClick={openItem}/>
                     </Item>) }

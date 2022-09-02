@@ -6,7 +6,7 @@ import { Table } from './Table';
 import { About } from './About';
 // import { Contact } from './Contact';
 import { Contact } from './Contact2';
-// import { TestFirebase } from './TestFirebase';
+import { Cook } from './Cook';
 
 export const Body = () => {
     return (
@@ -16,8 +16,8 @@ export const Body = () => {
                 <SubContainer>
                 <Routes>
                     <Route path="/" element={<Table/>} />
-                    <Route path="/about" element={<About />} />
-                    {/* <Route path="/contact" element={<Contact />} /> */}
+                    {/* <Route path="/about" element={<About />} /> */}
+                    <Route path="/about" element={<Cook />} />
                     <Route path="/contact" element={<Contact />} />
                 </Routes>  
                 </SubContainer>
