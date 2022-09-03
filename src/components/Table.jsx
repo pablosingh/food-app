@@ -39,7 +39,7 @@ export const Table = () => {
             { !activeFood && 
                 <Card>
                     <h2>Comensales</h2>
-                    {/* <TestFirebase/> */}
+                    <TestFirebase/>
                     { state && state.dinners.map( d => <Item>
                         <Dinner dinner={d} handleClick={openItem}/>
                     </Item>) }

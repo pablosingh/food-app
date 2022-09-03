@@ -35,3 +35,13 @@ export const deleteData = async (id) => {
         console.error(error);
     }  
 };
+
+export const onRealTime = () => {
+    console.log('onRealTime');
+    collection( db, nameCollection )
+        .onSnapshot( query => {
+            query.forEach( q => {
+                console.log( q.data() );
+            });
+        });
+};
