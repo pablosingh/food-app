@@ -2,32 +2,57 @@
 import { useEffect, useState } from "react";
 import { getData, putData, deleteData, onRealTime } from "../firebase/services";
 import { onSnapshot, doc } from "firebase/firestore";
-import db from '../firebase/firebaseConfig';
+import { db, auth } from '../firebase/firebaseConfig';
+import { query, collection, orderBy } from 'firebase/firestore';
 // import { useRealTime } from './useRealTime';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { SignIn } from "./SignIn";
+import { SignOut } from "./SignOut";
+
 
 export const TestFirebase = () => {
-    // const { error, loading, messages } = useRealTime();
-    const { data, setData } =useState({});
+    const [ data, setData ] = useState([]);
+    const [ user ] = useAuthState(auth)
+
     const fnTest = async() => {
-        // await putData( { nombre: 'xxx', edad: '32' } );
-        // await deleteData('il7baIBbx4o4nHz6o1kh');
-        console.log(await getData());
-        const unsubscribe = await onSnapshot(doc(db, "tables", 'faVl1PkI36YCZijAzIFh'), (d) => {
-            setData( d.data() );
-            console.log(d.data());
+        // console.log(await getData());
+
+        const ref =  collection(db, "tables");
+        // console.log(ref);
+
+        const q = query(ref, orderBy("name"));
+        // console.log(q);
+
+        const unsubscribe = onSnapshot(q, (querySnapshot) => {
+            let messages = [];
+            console.log(querySnapshot);
+            // console.log(querySnapshot.data());
+            querySnapshot.forEach((doc) => {
+                console.log('for each');        
+                messages.push({ ...doc.data(), fid: doc.id });
+                console.log(doc.data());
+            });  
+            setData( [...messages] );
             console.log('onSnapshot');
+            console.log(messages);
             });
-        console.log(unsubscribe);
-        unsubscribe();
+        // console.log(unsubscribe);
+        // unsubscribe();
     };
+
     useEffect( () => {
         fnTest();
+        // console.log(user);
     },[]);
+
     return (
         <div>
             Test
-            {/* { messages?.map( m => <p>{m.name}</p>) } */}
-            { data && data.map( data => <p>{data}</p>) }
-            <button onClick={()=>console.log(data)}>data</button>
+            { !user ? <SignIn /> : <SignOut /> }
+            {/* { data && data.map( data => <p>{data}</p>) } */}
+            <button onClick={ () =>{ 
+                console.log(data);
+                // console.log(user);
+            } }>data</button>
         </div>
 )};

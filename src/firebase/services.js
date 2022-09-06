@@ -1,5 +1,5 @@
 import { collection, getDocs, addDoc, doc, deleteDoc } from "firebase/firestore";
-import db from './firebaseConfig';
+import { db } from './firebaseConfig';
 const nameCollection = 'tables';
 
 export const getData = async() => {
@@ -36,12 +36,3 @@ export const deleteData = async (id) => {
     }  
 };
 
-export const onRealTime = () => {
-    console.log('onRealTime');
-    collection( db, nameCollection )
-        .onSnapshot( query => {
-            query.forEach( q => {
-                console.log( q.data() );
-            });
-        });
-};
