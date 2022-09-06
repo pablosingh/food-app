@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
-// import db from '../firebase/firebaseConfig';
-// import { collection } from 'firebase/firestore';
-// import { firebase } from 'firebase';
-import { db } from '../firebase/config';
+import db from '../firebase/firebaseConfig';
+import { onSnapshot, doc } from "firebase/firestore";
 
 export const useRealTime = () => {
     const [ error, setError ] = useState(null);
@@ -11,22 +9,12 @@ export const useRealTime = () => {
 
     useEffect(
         () => {
-            // const unsubscribe = firebase.firestore().collection('tables').onSnapshot( 
-            const unsubscribe = db.collection('tables').onSnapshot( 
-            snap => {
-                setLoading(false);
-                setMessagges( snap.docs.map( d => {
-                    return {
-                        ...d.data()
-                    }
-                } ) );
-            },
-            error => {
-                setError(error);
-            }
-           );
-        return () => unsubscribe();
-        },[setMessagges]
+            const unsubscribe = onSnapshot(doc(db, "tables", '1'), (d) => {
+                // setLoading(false);
+                setMessagges( d.data() );
+                });
+            return () => unsubscribe();
+            },[setMessagges]
     );
     return { error, loading, messagges };
 };
