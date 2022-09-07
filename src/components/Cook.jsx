@@ -7,7 +7,7 @@ import {
 } from '../styles/colors';
 
 import { db, auth } from '../firebase/firebaseConfig';
-import { query, collection, orderBy, onSnapshot } from 'firebase/firestore';
+import { doc, query, collection, orderBy, onSnapshot, updateDoc } from 'firebase/firestore';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { SignIn } from "./SignIn";
 
@@ -25,6 +25,9 @@ export const Cook = () => {
             setTables( [...tables] );
             });
         // unsubscribe();
+    };
+    const doneTable = async(id, stateTable) => {
+        await updateDoc(doc(db, "tables", id), { pending: stateTable });
     };
 
     useEffect( () => {
@@ -44,7 +47,10 @@ export const Cook = () => {
                             {dinner.name}
                             <p>{dinner.foods.map( food => <p>{food.strMeal}</p>)}</p>
                             </div>)}
-                        <Btn onClick={ () => console.log("Despachar") }>Despachar</Btn>
+                        <Btn onClick={ () => {
+                            console.log("Despachar");
+                            doneTable(table.fid, !table.pending);
+                            } }>Despachar</Btn>
                     </div>
                 </Order>)}
             </Card> 
@@ -83,11 +89,11 @@ const Card = styled.div`
 const Order = styled.div`
     color: white;
     background-color: rgba(103,104,107,1);
-    padding: 0.5em 1.5em;
+    padding: 0.5em 1em;
     margin: 0.5em 0em;
     border-radius: 2em;
     .title{
-        border-bottom: 3px solid black;
+        // border-bottom: 3px solid black;
         // padding-bottom: 0.2em;
         padding: 0.2em 0.5em;
     }
@@ -95,7 +101,7 @@ const Order = styled.div`
         // background-color: rgba(255,55,55,0.5);
         color: black;
         background-color: ${primaryColor};
-        padding: 0.2em 1.5em;
+        padding: 0.2em 2em;
         border-radius: 1em;
         margin-top: 0.3em;
     }
