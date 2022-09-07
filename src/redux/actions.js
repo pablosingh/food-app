@@ -30,7 +30,7 @@ export function loadCards(){
         const promesas = [];
         const subPromesas = [];
         const category = `beef`;
-        console.log('load cards');
+        // console.log('load cards');
         // dispatch( { type: SET_LOADING, payload: true } );
         try {
             await fetch( `https://www.themealdb.com/api/json/v1/1/filter.php?c=${category}` )
