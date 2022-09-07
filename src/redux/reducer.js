@@ -20,7 +20,8 @@ import {
     ADD_DINNERS,
     REMOVE_DINNER,
     SET_ACTUAL_DINNER,
-    ADD_FOOD_DINNER
+    ADD_FOOD_DINNER,
+    CLEAR_STATE
 } from './actions';
 
 import { order } from './functionsFilters';
@@ -205,6 +206,12 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 dinners: state.dinners
+            };
+        case CLEAR_STATE:
+            // console.log('clearState');
+            return {
+                ...initialState,
+                dinners: []
             };
         default: return {...state};
     

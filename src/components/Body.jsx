@@ -5,7 +5,7 @@ import { Head } from './Head';
 import { Table } from './Table';
 import { About } from './About';
 // import { Contact } from './Contact';
-import { Contact } from './Contact2';
+import { Contact } from './Contact';
 import { Cook } from './Cook';
 // import image from '../images/resto.jpg';
 import image from '../images/madera.jpg';

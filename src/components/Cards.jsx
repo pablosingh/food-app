@@ -12,16 +12,21 @@ export const Cards = props => {
     const state = useSelector( state => state );
     return (
         <Container>
-            <BtnClose
-                onClick={e =>{
-                    e.preventDefault();
-                    props?.handleClose();
-                    console.log('cerrar');
-                }}
-                ><AiOutlineArrowLeft/></BtnClose>
+            <div className="btn_close_container">
+                <BtnClose
+                    onClick={e =>{
+                        e.preventDefault();
+                        props?.handleClose();
+                        // console.log('cerrar');
+                    }}
+                    ><AiOutlineArrowLeft/> Atras</BtnClose>
+            </div>
             <SearchBar/>
             <CardsContainer>
-                { state.cards && state.cards.map( (c,i) => <Card food={c} key={i}/>) }
+                { state.cards && state.cards.map( (c,i) => <Card 
+                    food={c} key={i}
+                    handleClose={props?.handleClose}
+                    />) }
             </CardsContainer>
         </Container>
     )
@@ -49,10 +54,9 @@ const CardsContainer = styled.div`
 `;
 
 const BtnClose = styled.button`
-    width: 5%;
     background-color: ${gray};
     color: white;
-    margin: 0.5em 0.5em;
+    margin: 0.5em 0.5em 0.5em 1em;
     padding: 0.3em 0.5em;
     border-radius: 2em;
     box-shadow: none;

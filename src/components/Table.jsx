@@ -11,11 +11,15 @@ import { putData } from '../firebase/services';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { SignIn } from "./SignIn";
 import { auth } from '../firebase/firebaseConfig';
+import { clearState } from '../redux/actions';
+import { Message } from './Message';
 
 export const Table = () => {
     const [ user ] = useAuthState(auth);
     const [ activeAddDinner, setActiveAddDinner ] = useState(false);
     const [ activeFood, setActiveFood ] = useState(false);
+    const [ msg, setMsg ] = useState(false);
+    const dispatch = useDispatch();
     const state = useSelector( state => state );
     const openItem = () => {
         setActiveFood(!activeFood);
@@ -30,6 +34,10 @@ export const Table = () => {
             pending: true,
             dinners: state.dinners
         });
+        setMsg(true);
+        setTimeout(()=>setMsg(false), 2000);
+        dispatch(clearState());
+        console.log('Enviado');
     };
 
     return (
@@ -41,19 +49,17 @@ export const Table = () => {
             { activeAddDinner && 
                 <AddDinner handleClose={fnBtnActiveAddDinner}/> 
             }
+            { msg && <Message msg={'Exito al enviar!'}/>}
             { !activeFood && 
                 <Card>
                     <h2>Comensales</h2>
-                    {/* <TestFirebase/> */}
                     { state && state.dinners.map( d => <Item>
                         <Dinner dinner={d} handleClick={openItem}/>
                     </Item>) }
                     <div className="">
                         <Btn onClick={fnBtnActiveAddDinner}>Agregar</Btn>
-                        <Btn onClick={()=>{
-                            console.log('Enviado');
-                            submiting();
-                        }}>Ordernar</Btn>
+                        <Btn onClick={submiting}>Ordernar</Btn>
+                        {/* <Btn onClick={()=>console.log(state)}>State</Btn> */}
                     </div>
                 </Card>
             }
@@ -64,7 +70,7 @@ export const Table = () => {
 
 const Container = styled.div`
     width: 100%; 
-    height: 100%;
+    min-height: 90vh;
     display: flex;
     flex-direction: column;
     align-items: center;

@@ -22,6 +22,7 @@ export const ADD_DINNERS = 'ADD_DINNERS';
 export const REMOVE_DINNER = 'REMOVE_DINNER';
 export const SET_ACTUAL_DINNER = 'SET_ACTUAL_DINNER';
 export const ADD_FOOD_DINNER = 'ADD_FOOD_DINNER';
+export const CLEAR_STATE = 'CLEAR_STATE';
 
 
 export function loadCards(){
@@ -118,3 +119,4 @@ export const removeDinner = (id) => ({ type: REMOVE_DINNER, payload: id });
 
 export const setActualDinner = (id) => ({ type: SET_ACTUAL_DINNER, payload: id });
 export const addFoodDinner = (food) => ({ type: ADD_FOOD_DINNER, payload: food });
+export const clearState = () => ({ type: CLEAR_STATE, payload: null });

@@ -33,6 +33,7 @@ export const Card = props => {
                                 idMeal: food?.idMeal,
                                 strMeal: food?.strMeal
                             }));
+                            props?.handleClose();
                         }}>Agregar
                     </button>
                 </div>
