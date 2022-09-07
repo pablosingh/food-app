@@ -16,8 +16,8 @@ export const Body = () => {
                 <SubContainer>
                 <Routes>
                     <Route path="/" element={<Table/>} />
-                    {/* <Route path="/about" element={<About />} /> */}
-                    <Route path="/about" element={<Cook />} />
+                    <Route path="/cook" element={<Cook />} />
+                    <Route path="/about" element={<About />} />
                     <Route path="/contact" element={<Contact />} />
                 </Routes>  
                 </SubContainer>

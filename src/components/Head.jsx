@@ -20,6 +20,7 @@ export const Head = () => {
             </div>
             <div className={'group'}>
                 <Link to="/" className={`linkClass`}>Menu</Link>
+                <Link to="/cook" className={`linkClass`}>Cocina</Link>
                 <Link to="/about" className={`linkClass`}>Acerca</Link>
                 <Link to="/contact" className={`linkClass`}>Contacto</Link>
             </div>

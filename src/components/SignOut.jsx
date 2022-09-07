@@ -1,10 +1,11 @@
-import {auth} from '../firebase/firebaseConfig';
+import { auth } from '../firebase/firebaseConfig';
+import { Btn } from '../styles/btn'
 
 export const SignOut = () => {
     return (
         <div>
-            <button onClick={() => auth.signOut()} >
+            <Btn onClick={() => auth.signOut()} >
                 Logout
-            </button>
+            </Btn>
         </div>
 )};
