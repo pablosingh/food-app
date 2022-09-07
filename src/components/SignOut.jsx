@@ -3,9 +3,7 @@ import { Btn } from '../styles/btn'
 
 export const SignOut = () => {
     return (
-        <div>
-            <Btn onClick={() => auth.signOut()} >
-                Logout
-            </Btn>
-        </div>
+        <Btn onClick={() => auth.signOut()} >
+            Logout
+        </Btn>
 )};

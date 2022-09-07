@@ -1,3 +1,4 @@
+import styled from 'styled-components';
 import { GoogleButton } from 'react-google-button';
 import { GoogleAuthProvider, signInWithRedirect } from 'firebase/auth';
 import { auth } from '../firebase/firebaseConfig';
@@ -8,7 +9,17 @@ export const SignIn = () => {
         signInWithRedirect(auth, provider)
     };
     return (
-        <div>
+        <Container>
             <GoogleButton onClick={googleSignIn} />
-        </div>)
+        </Container>)
 };
+
+const Container = styled.div`
+    width: 100%; 
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1em 0em;
+`;

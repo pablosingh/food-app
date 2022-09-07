@@ -6,10 +6,14 @@ import { Dinner } from './Dinner';
 import { primaryColor, gray, 
     hoverColorText, hoverColorBackground } from '../styles/colors';
 import { useSelector, useDispatch } from 'react-redux';
-import { TestFirebase } from './TestFirebase';
+// import { TestFirebase } from './TestFirebase';
 import { putData } from '../firebase/services';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { SignIn } from "./SignIn";
+import { auth } from '../firebase/firebaseConfig';
 
 export const Table = () => {
+    const [ user ] = useAuthState(auth);
     const [ activeAddDinner, setActiveAddDinner ] = useState(false);
     const [ activeFood, setActiveFood ] = useState(false);
     const state = useSelector( state => state );
@@ -30,6 +34,7 @@ export const Table = () => {
 
     return (
         <Container>
+        { !user ? <SignIn /> : <>
             { activeFood && 
                 <Cards handleClose={openItem}/>    
             }
@@ -52,6 +57,7 @@ export const Table = () => {
                     </div>
                 </Card>
             }
+        </>}
         </Container>
     )
 };

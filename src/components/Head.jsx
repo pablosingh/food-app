@@ -6,6 +6,7 @@ import { primaryColor, gray,
 import { useEffect } from "react";
 import { loadCards } from "../redux/actions";
 import { Link } from 'react-router-dom';
+import { SignOut } from "./SignOut";
 
 export const Head = () => {
     const state = useSelector( state => state ); 
@@ -23,6 +24,7 @@ export const Head = () => {
                 <Link to="/cook" className={`linkClass`}>Cocina</Link>
                 <Link to="/about" className={`linkClass`}>Acerca</Link>
                 <Link to="/contact" className={`linkClass`}>Contacto</Link>
+                <SignOut className={`linkClass`}/>
             </div>
                 {/* <Btn onClick={ ()=> console.log(state) }>
                     State
@@ -46,6 +48,8 @@ const Container = styled.div`
     }
     .group{
         display: flex;
+        align-items: center;
+        justify-content: space-around;
     }
     
     .linkClass{
