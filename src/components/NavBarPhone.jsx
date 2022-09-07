@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import BurguerButton from './BurguerButton';
+import { SignOut } from './SignOut';
 
 export const NavBarPhone = () => {
   const [clicked, setClicked] = useState(false);
@@ -13,8 +14,10 @@ export const NavBarPhone = () => {
       <NavContainer>
         <div className={`links ${clicked ? 'active' : ''}`}>
           <Link to="/" onClick={handleClick} className={`linkClass`}>Menu</Link>
+          <Link to="/cook" onClick={handleClick} className={`linkClass`}>Cocina</Link>
           <Link to="/about" onClick={handleClick} className={`linkClass`}>Acerca</Link>
           <Link to="/contact" onClick={handleClick} className={`linkClass`}>Contacto</Link>
+          <SignOut className={`linkClass`} onClick={handleClick}/>
         </div>
         <div className='burguer'>
           <BurguerButton clicked={clicked} handleClick={handleClick} />

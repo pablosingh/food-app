@@ -10,7 +10,6 @@ import { db, auth } from '../firebase/firebaseConfig';
 import { query, collection, orderBy, onSnapshot } from 'firebase/firestore';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { SignIn } from "./SignIn";
-// import { SignOut } from "./SignOut";
 
 export const Cook = () => {
     const [ tables, setTables ] = useState([]);
@@ -45,9 +44,9 @@ export const Cook = () => {
                             {dinner.name}
                             <p>{dinner.foods.map( food => <p>{food.strMeal}</p>)}</p>
                             </div>)}
+                        <Btn onClick={ () => console.log("Despachar") }>Despachar</Btn>
                     </div>
                 </Order>)}
-                <Btn onClick={ () => console.log(tables) }>Cook</Btn>
             </Card> 
             }
         </Container>
