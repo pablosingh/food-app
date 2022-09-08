@@ -1,14 +1,14 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import styled from 'styled-components';
-import { primaryColor, gray, 
-    hoverColorText, hoverColorBackground 
+import { primaryColor, 
+    // gray, hoverColorText, hoverColorBackground 
 } from '../styles/colors';
 import { useDispatch } from 'react-redux';
 import { setTable } from '../redux/actions';
 import { Btn } from '../styles/btn';
 
 export const SelectTable = ( props ) => {
-    const [ number, setNumber ] = useState(0); 
+    const [ number, setNumber ] = useState(); 
     const dispatch = useDispatch();
     const changing = e => {
         e.preventDefault();

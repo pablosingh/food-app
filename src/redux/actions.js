@@ -1,3 +1,5 @@
+import { foods } from './foods';
+// /////////////////////////////////////////////
 export const LOAD_CARDS = 'LOAD_CARDS';
 export const SET_ACTUAL_PAGE_CARDS = 'SET_ACTUAL_PAGE_CARDS';
 export const LOAD_PAGES_CARDS = 'LOAD_PAGES_CARDS';
@@ -31,16 +33,21 @@ export function loadCards(){
         const all = [];
         const promesas = [];
         const subPromesas = [];
-        const category = `beef`;
+        // const category = `beef`;
+        // const category = `Chicken`;
+        const category = `Side`;
+        // const category = `Pasta`;
         // console.log('load cards');
         // dispatch( { type: SET_LOADING, payload: true } );
         try {
             await fetch( `https://www.themealdb.com/api/json/v1/1/filter.php?c=${category}` )
                 .then( js => js.json() )
                 .then( arrayJson => {
-                    arrayJson.meals.forEach(element => {
+                    // arrayJson.meals.forEach(element => {
+                    foods.forEach(element => {
                         promesas.push( fetch(
-                            `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${element.idMeal}`
+                            `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${element}`
+                            // `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${element.idMeal}`
                             ) )
                     })
                 })

@@ -34,13 +34,13 @@ export const Table = () => {
         setSelect(!select);
     };
     const submiting = async() => {
+        setMsg(true);
         await putData({
             table: state.table,
             pending: true,
             dinners: state.dinners
         });
-        setMsg(true);
-        setTimeout(()=>setMsg(false), 2000);
+        setTimeout(()=>setMsg(false), 1000);
         dispatch(clearState());
         fnSelect();
         // console.log('Enviado');

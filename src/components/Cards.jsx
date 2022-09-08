@@ -1,9 +1,10 @@
 // import { useSelector } from 'react-redux';
 import { Card } from './Card';
-import { SearchBar } from './SearchBar';
+// import { SearchBar } from './SearchBar';
 import styled from 'styled-components';
-import { primaryColor, gray, 
-    hoverColorText, hoverColorBackground } from '../styles/colors';
+import { 
+    // primaryColor, 
+    gray, hoverColorText, hoverColorBackground } from '../styles/colors';
 import { useSelector } from 'react-redux';
 // import { BiArrowBack } from 'react-icons/bi';
 import { AiOutlineArrowLeft } from 'react-icons/ai';
@@ -21,7 +22,7 @@ export const Cards = props => {
                     }}
                     ><AiOutlineArrowLeft/> Atras</BtnClose>
             </div>
-            <SearchBar/>
+            {/* <SearchBar/> */}
             <CardsContainer>
                 { state.cards && state.cards.map( (c,i) => <Card 
                     food={c} key={i}

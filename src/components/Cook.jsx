@@ -40,15 +40,15 @@ export const Cook = () => {
                 { tables && tables.map( table => <Order>
                     <div className="title">
                         <h3>Mesa: {table?.table}</h3>
-                        <h4>Estado: { table.pending ? <span>Pendiente</span> : <span>Despachado</span> }</h4>
+                        <h4>Estado: { table.pending ? <Red>Pendiente</Red> : <Green>Despachado</Green> }</h4>
                     </div>
                     <div className="dinners">
                         {table.dinners.map( dinner => <div className="dinner">
-                            {dinner.name}
+                            <h4>{dinner.name}</h4>
                             <p>{dinner.foods.map( food => <p>{food.strMeal}</p>)}</p>
                             </div>)}
                         <Btn onClick={ () => {
-                            console.log("Despachar");
+                            // console.log("Despachar");
                             doneTable(table.fid, !table.pending);
                             } }>Despachar</Btn>
                     </div>
@@ -109,4 +109,20 @@ const Order = styled.div`
         padding: 0.2em 0.5em;
         border-bottom: 1px solid black;
     }
+`;
+
+const Red = styled.span`
+    color: red;
+    font-weight: bold;
+    background-color: white;
+    padding: 0.1em 0.7em;
+    border-radius: 1em;
+`;
+
+const Green = styled.span`
+    color: green;
+    font-weight: bold;
+    background-color: white;
+    padding: 0.1em 0.7em;
+    border-radius: 1em;
 `;

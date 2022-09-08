@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { addFoodDinner } from '../redux/actions';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 // import { Link } from 'react-router-dom';
 import { primaryColor, gray, hoverColorText, hoverColorBackground } from '../styles/colors';
 // import { useDispatch } from "react-redux";
@@ -21,10 +21,14 @@ export const Card = props => {
                     <img src={food?.strMealThumb} alt="Food" className='image'/>
                     <span className='description'>
                         <p className='black'>Detalles: </p>
-                        <p>{food?.strArea}</p>
-                        <p>{food?.strCategory}</p>
-                        <p><a href={food?.strSource}>Web</a></p>
-                        <p><a href={food?.strYoutube}>Youtube</a></p>
+                        <p>
+                        <span>{food?.strArea} | </span>
+                        <span>{food?.strCategory}</span>
+                        </p>
+                        <p>
+                        <span><a href={food?.strSource}>Web</a> | </span>
+                        <span><a href={food?.strYoutube}>Youtube</a></span>
+                        </p>
                     </span>
                     <button className='btnCard'
                         onClick={ () => {
