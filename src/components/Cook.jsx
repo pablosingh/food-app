@@ -16,7 +16,7 @@ export const Cook = () => {
     const [ user ] = useAuthState(auth);
     const loadFromDB = async() => {
         const ref =  collection(db, "tables");
-        const q = query(ref, orderBy("pending"));
+        const q = query(ref, orderBy("table"));
         const unsubscribe = onSnapshot(q, (querySnapshot) => {
             let tables = [];
             querySnapshot.forEach((doc) => {
@@ -37,9 +37,9 @@ export const Cook = () => {
         <Container>
             { !user ? <SignIn /> : 
             <Card>
-                { tables && tables.map( (table,i) => <Order>
+                { tables && tables.map( table => <Order>
                     <div className="title">
-                        <h3>Mesa: {i}</h3>
+                        <h3>Mesa: {table?.table}</h3>
                         <h4>Estado: { table.pending ? <span>Pendiente</span> : <span>Despachado</span> }</h4>
                     </div>
                     <div className="dinners">

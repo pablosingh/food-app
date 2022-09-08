@@ -13,36 +13,44 @@ import { SignIn } from "./SignIn";
 import { auth } from '../firebase/firebaseConfig';
 import { clearState } from '../redux/actions';
 import { Message } from './Message';
+import { SelectTable } from './SelectTable';
 
 export const Table = () => {
     const [ user ] = useAuthState(auth);
     const [ activeAddDinner, setActiveAddDinner ] = useState(false);
     const [ activeFood, setActiveFood ] = useState(false);
+    const [ select, setSelect ] = useState(true);
     const [ msg, setMsg ] = useState(false);
     const dispatch = useDispatch();
     const state = useSelector( state => state );
+
     const openItem = () => {
         setActiveFood(!activeFood);
     };
-
     const fnBtnActiveAddDinner = () => {
         setActiveAddDinner(!activeAddDinner);
     };
-
+    const fnSelect = () => {
+        setSelect(!select);
+    };
     const submiting = async() => {
         await putData({
+            table: state.table,
             pending: true,
             dinners: state.dinners
         });
         setMsg(true);
         setTimeout(()=>setMsg(false), 2000);
         dispatch(clearState());
-        console.log('Enviado');
+        fnSelect();
+        // console.log('Enviado');
     };
 
     return (
         <Container>
         { !user ? <SignIn /> : <>
+            { select ? <SelectTable handleClick={fnSelect} /> : <>
+            
             { activeFood && 
                 <Cards handleClose={openItem}/>    
             }
@@ -63,6 +71,7 @@ export const Table = () => {
                     </div>
                 </Card>
             }
+            </> }
         </>}
         </Container>
     )

@@ -21,7 +21,8 @@ import {
     REMOVE_DINNER,
     SET_ACTUAL_DINNER,
     ADD_FOOD_DINNER,
-    CLEAR_STATE
+    CLEAR_STATE,
+    SET_TABLE
 } from './actions';
 
 import { order } from './functionsFilters';
@@ -40,7 +41,8 @@ const initialState = {
     // ******************************
     dinners: [],
     id: 1,
-    actualDinner: 0
+    actualDinner: 0,
+    table: 0
 };
 
 export default (state = initialState, action) => {
@@ -212,6 +214,11 @@ export default (state = initialState, action) => {
             return {
                 ...initialState,
                 dinners: []
+            };
+        case SET_TABLE:
+            return {
+                ...state,
+                table: action.payload
             };
         default: return {...state};
     
