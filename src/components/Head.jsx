@@ -41,7 +41,7 @@ const Container = styled.div`
     align-items: center;
     justify-content: space-around;
     position: fixed;
-    z-index: 1;
+    z-index: 0;
     background-color: ${primaryColor};
     @media(max-width: 768px){
         display: none;
@@ -72,15 +72,15 @@ const Container = styled.div`
     }
 `;
 
-const Btn = styled.button`
-    background-color: ${gray};
-    color: white;
-    margin: 0.5em 0.5em;
-    padding: 0.3em 0.5em;
-    border-radius: 2em;
-    box-shadow: none;
-    :hover{
-        background-color: ${hoverColorText};
-        color: ${hoverColorBackground};
-    }
-`;
+// const Btn = styled.button`
+//     background-color: ${gray};
+//     color: white;
+//     margin: 0.5em 0.5em;
+//     padding: 0.3em 0.5em;
+//     border-radius: 2em;
+//     box-shadow: none;
+//     :hover{
+//         background-color: ${hoverColorText};
+//         color: ${hoverColorBackground};
+//     }
+// `;

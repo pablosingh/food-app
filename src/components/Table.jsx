@@ -15,6 +15,7 @@ import { clearState } from '../redux/actions';
 import { Message } from './Message';
 import { SelectTable } from './SelectTable';
 
+
 export const Table = () => {
     const [ user ] = useAuthState(auth);
     const [ activeAddDinner, setActiveAddDinner ] = useState(false);
@@ -54,9 +55,13 @@ export const Table = () => {
             { activeFood && 
                 <Cards handleClose={openItem}/>    
             }
-            { activeAddDinner && 
+            {/* { activeAddDinner && 
                 <AddDinner handleClose={fnBtnActiveAddDinner}/> 
-            }
+            } */}
+            <MobilePanel className={`initial ${activeAddDinner ? 'active' : ''}`}>
+                <AddDinner handleClose={fnBtnActiveAddDinner} /> 
+            </MobilePanel>
+
             { msg && <Message msg={'Exito al enviar!'}/>}
             { !activeFood && 
                 <Card>
@@ -70,7 +75,7 @@ export const Table = () => {
                         {/* <Btn onClick={()=>console.log(state)}>State</Btn> */}
                     </div>
                 </Card>
-            }
+            }    
             </> }
         </>}
         </Container>
@@ -130,4 +135,17 @@ const Btn = styled.button`
         background-color: ${hoverColorText};
         color: ${hoverColorBackground};
     }
+`;
+
+const MobilePanel = styled.div`
+    position: fixed;
+    top: 0vh;
+    left: -100vw;
+    width: 100%;
+    height: 100%;
+    transition: all .6s ease ;
+    // z-index: 3;
+    &.active{
+        left: 0;
+    } 
 `;

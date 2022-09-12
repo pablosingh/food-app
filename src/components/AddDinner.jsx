@@ -26,21 +26,25 @@ export const AddDinner = props => {
         dispatch(addDinner(data.name));
         setData({name: ''});
     };
-    const submiting = e => {
-        e.preventDefault();
-        console.log(dinners);
-        setData({name: ''});
-    };
+    // const submiting = e => {
+    //     e.preventDefault();
+    //     console.log(dinners);
+    //     setData({name: ''});
+    // };
     return (
         <Container>
             <Card>
                 <TitleAndClose>
                     <h3>Agregando Comensales</h3>
-                    <Btn
+                    <Btn 
                         onClick={e =>{
                             props?.handleClose();
                         }}
                         >X</Btn>
+                    {/* <Btn className={` ${state ? `clicked`: ` `}`}
+                        onClick={()=>setState(!state)}>
+                        PPP
+                    </Btn> */}
                 </TitleAndClose>
                 <div className="nameAndInput">
                     <label htmlFor="name">Nombre : </label>
@@ -58,20 +62,23 @@ export const AddDinner = props => {
                             props?.handleClose();
                         }}
                         >Listo</button>
-                        <Test>
+                        {/* <Test>
                             <SwitchTransition>
                                 <CSSTransition
                                     key={state ? "Goodbye, world!" : "Hello, world!"}
                                     addEndListener={(node, done) => node.addEventListener("transitionend", done, false)}
                                     classNames='fade'
                                     >
-                                    <button onClick={() => setState(state => !state)}
-                                        className='btn-test'>
-                                        {state ? "Goodbye!" : "Hello!"}
-                                    </button>
+                                    <div className="correr">
+                                        <button onClick={() => setState(state => !state)}
+                                            className='btn-test'>
+                                            {state ? "Goodbye!" : "Hello!"}
+                                        </button>
+                                        <label htmlFor="">label en div</label>
+                                    </div>
                                 </CSSTransition>
                             </SwitchTransition>
-                        </Test>
+                        </Test> */}
                 </div>
             </Card>
         </Container>
@@ -81,14 +88,11 @@ export const AddDinner = props => {
 const Container = styled.div`
     width: 100vw; 
     height: 100vh;
-    position: fixed;
-    top: 0;
-    left: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: rgba(0,0,0,0.5);
+    background-color: rgba(1,1,1,0.8);
 `;
 
 const Card = styled.div`
@@ -99,7 +103,7 @@ const Card = styled.div`
     border-radius: 2em;
     background-color: ${primaryColor}};
     padding: 1em 1em;
-    margin: 1em 0em;
+    margin: 0em 0em;
     @media(max-width: 768px){
         width: 80%;
     }
@@ -125,6 +129,10 @@ const Card = styled.div`
     .btn:hover{
         background-color: ${hoverColorText};
         color: ${hoverColorBackground};
+    }
+    .clicked{
+        padding: 1.5em 1.5em;
+        transition: all .4s ease;
     }
     *{
         padding: 0.5em 0.5em;
@@ -165,18 +173,22 @@ const Test = styled.div`
     }
     .fade-enter{
         opacity: 0;
-    }
-    .fade-exit{
-        opacity: 1;
+        transform: translateY(-100%);
     }
     .fade-enter-active{
         opacity: 1;
+        transform: translateY(0%);
+    }
+    .fade-exit{
+        opacity: 1;
+        transform: translateY(0%);
     }
     .fade-exit-active{
         opacity: 0;
+        transform: translateY(100%);
     }
     .fade-enter-active,
     .fade-exit-active{
-        transition: opacity 500ms;
+        transition: opacity 500ms, transform 500ms;
     }
 `;
