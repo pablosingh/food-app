@@ -3,8 +3,10 @@ import styled from 'styled-components';
 import { primaryColor, gray, hoverColorBackground, hoverColorText } from '../styles/colors';
 import { addDinner } from '../redux/actions'; 
 import { useDispatch } from "react-redux";
+import { SwitchTransition, CSSTransition } from 'react-transition-group';
 
 export const AddDinner = props => {
+    const [state, setState] = useState(false);
     const [ dinners, setDinners ] = useState([]);
     const [ data, setData ] = useState({name: ''});
     const dispatch = useDispatch();
@@ -56,6 +58,20 @@ export const AddDinner = props => {
                             props?.handleClose();
                         }}
                         >Listo</button>
+                        <Test>
+                            <SwitchTransition>
+                                <CSSTransition
+                                    key={state ? "Goodbye, world!" : "Hello, world!"}
+                                    addEndListener={(node, done) => node.addEventListener("transitionend", done, false)}
+                                    classNames='fade'
+                                    >
+                                    <button onClick={() => setState(state => !state)}
+                                        className='btn-test'>
+                                        {state ? "Goodbye!" : "Hello!"}
+                                    </button>
+                                </CSSTransition>
+                            </SwitchTransition>
+                        </Test>
                 </div>
             </Card>
         </Container>
@@ -132,4 +148,35 @@ const TitleAndClose = styled.div`
     display: flex;
     justify-content: space-between;
     width: 100%;
+`;
+
+const Test = styled.div`
+    display: flex;
+    .btn-test{
+        color: white;
+        background-color: ${gray};
+        border-radius: 2em;
+        padding: 0.5em 1em;
+        transition: all .4s ease ;
+        :hover{
+            background-color: ${hoverColorText};
+            color: ${hoverColorBackground};
+        }
+    }
+    .fade-enter{
+        opacity: 0;
+    }
+    .fade-exit{
+        opacity: 1;
+    }
+    .fade-enter-active{
+        opacity: 1;
+    }
+    .fade-exit-active{
+        opacity: 0;
+    }
+    .fade-enter-active,
+    .fade-exit-active{
+        transition: opacity 500ms;
+    }
 `;
