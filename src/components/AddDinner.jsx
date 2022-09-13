@@ -4,6 +4,7 @@ import { primaryColor, gray, hoverColorBackground, hoverColorText } from '../sty
 import { addDinner } from '../redux/actions'; 
 import { useDispatch } from "react-redux";
 import { SwitchTransition, CSSTransition } from 'react-transition-group';
+import { BtnAnimated } from './BtnAnimated';
 
 export const AddDinner = props => {
     const [state, setState] = useState(false);
@@ -18,8 +19,7 @@ export const AddDinner = props => {
             [e.target.name]: e.target.value
         });
     };
-    const adding = e => {
-        e.preventDefault();
+    const adding = () => {
         setDinners(
             [...dinners, data.name]
         );
@@ -31,20 +31,18 @@ export const AddDinner = props => {
     //     console.log(dinners);
     //     setData({name: ''});
     // };
+    const animation = () => {
+        setState(true);
+        setTimeout(() =>{
+            setState(false);
+        },200);
+    };
     return (
         <Container>
             <Card>
                 <TitleAndClose>
                     <h3>Agregando Comensales</h3>
-                    <Btn 
-                        onClick={e =>{
-                            props?.handleClose();
-                        }}
-                        >X</Btn>
-                    {/* <Btn className={` ${state ? `clicked`: ` `}`}
-                        onClick={()=>setState(!state)}>
-                        PPP
-                    </Btn> */}
+                    <BtnAnimated handleClick={props?.handleClose} text={'X'}/>
                 </TitleAndClose>
                 <div className="nameAndInput">
                     <label htmlFor="name">Nombre : </label>
@@ -55,13 +53,15 @@ export const AddDinner = props => {
                         value={data.name}/>
                 </div>
                 <div className="twoBtn">
-                    <button className="btn" 
-                        onClick={adding}>Agregar</button>
-                    <button className="btn"
+                    {/* <button className="btn" 
+                        onClick={adding}>Agregar</button> */}
+                    <BtnAnimated handleClick={adding} text={'Add'}/>
+                    <BtnAnimated handleClick={props?.handleClose} text={'Listo'}/>
+                    {/* <button className="btn"
                         onClick={e =>{
                             props?.handleClose();
                         }}
-                        >Listo</button>
+                        >Listo</button> */}
                         {/* <Test>
                             <SwitchTransition>
                                 <CSSTransition
@@ -93,6 +93,11 @@ const Container = styled.div`
     align-items: center;
     justify-content: center;
     background-color: rgba(1,1,1,0.8);
+    .twoBtn{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
 `;
 
 const Card = styled.div`
@@ -124,7 +129,7 @@ const Card = styled.div`
         margin: 0.5em 0.5em;
         padding: 0.5em 1em;
         border-radius: 2em;
-        transition: all .4s ease ;
+        transition: all .4s ease;
     }
     .btn:hover{
         background-color: ${hoverColorText};
@@ -151,6 +156,7 @@ const Btn = styled.button`
         color: ${hoverColorBackground};
     }
 `;
+
 
 const TitleAndClose = styled.div`
     display: flex;

@@ -14,6 +14,7 @@ import { auth } from '../firebase/firebaseConfig';
 import { clearState } from '../redux/actions';
 import { Message } from './Message';
 import { SelectTable } from './SelectTable';
+import { BtnAnimated } from './BtnAnimated';
 
 
 export const Table = () => {
@@ -69,9 +70,11 @@ export const Table = () => {
                     { state && state.dinners.map( d => <Item>
                         <Dinner dinner={d} handleClick={openItem}/>
                     </Item>) }
-                    <div className="">
-                        <Btn onClick={fnBtnActiveAddDinner}>Agregar</Btn>
-                        <Btn onClick={submiting}>Ordernar</Btn>
+                    <div className="d-flex">
+                        <BtnAnimated handleClick={fnBtnActiveAddDinner} text={'Agregar'}/>
+                        <BtnAnimated handleClick={submiting} text={'Ordernar'}/>
+                        {/* <Btn onClick={fnBtnActiveAddDinner}>Agregar</Btn>
+                        <Btn onClick={submiting}>Ordernar</Btn> */}
                         {/* <Btn onClick={()=>console.log(state)}>State</Btn> */}
                     </div>
                 </Card>
@@ -89,6 +92,9 @@ const Container = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    .d-flex{
+        display: flex;
+    }
 `;
 
 const Card = styled.div`
@@ -144,7 +150,6 @@ const MobilePanel = styled.div`
     width: 100%;
     height: 100%;
     transition: all .6s ease ;
-    // z-index: 3;
     &.active{
         left: 0;
     } 
