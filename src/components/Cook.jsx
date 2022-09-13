@@ -10,6 +10,7 @@ import { db, auth } from '../firebase/firebaseConfig';
 import { doc, query, collection, orderBy, onSnapshot, updateDoc } from 'firebase/firestore';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { SignIn } from "./SignIn";
+import { BtnAnimated } from './BtnAnimated';
 
 export const Cook = () => {
     const [ tables, setTables ] = useState([]);
@@ -47,10 +48,14 @@ export const Cook = () => {
                             <h4>{dinner.name}</h4>
                             <p>{dinner.foods.map( food => <p>{food.strMeal}</p>)}</p>
                             </div>)}
-                        <Btn onClick={ () => {
+                        {/* <Btn onClick={ () => {
                             // console.log("Despachar");
                             doneTable(table.fid, !table.pending);
-                            } }>Despachar</Btn>
+                            } }>Despachar</Btn> */}
+                        <BtnAnimated handleClick={ () => {
+                            // console.log("Despachar");
+                            doneTable(table.fid, !table.pending);
+                            }} text='Despachar' />
                     </div>
                 </Order>)}
             </Card> 

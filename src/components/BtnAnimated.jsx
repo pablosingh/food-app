@@ -11,6 +11,7 @@ export const BtnAnimated = props => {
             setState(false);
             props?.handleClick();
         }, 200);
+        console.log('clicked animated');
     };
     return (
         <Container>

@@ -6,6 +6,7 @@ import { primaryColor,
 import { useDispatch } from 'react-redux';
 import { setTable } from '../redux/actions';
 import { Btn } from '../styles/btn';
+import { BtnAnimated } from "./BtnAnimated";
 
 export const SelectTable = ( props ) => {
     const [ number, setNumber ] = useState(); 
@@ -15,7 +16,6 @@ export const SelectTable = ( props ) => {
         setNumber(e.target.value);
     };
     const submiting = e => {
-        e.preventDefault();
         // console.log(number);
         dispatch(setTable(number));
         props?.handleClick();
@@ -26,7 +26,8 @@ export const SelectTable = ( props ) => {
                 <h2>Selecciona tu mesa</h2>
                 <div className="input_btn">
                     <input type="number" onChange={changing} value={number} className='iNumber'/>
-                    <Btn onClick={submiting}>Ok</Btn>
+                    {/* <Btn onClick={submiting}>Ok</Btn> */}
+                    <BtnAnimated handleClick={submiting} text={'Ok'} />
                 </div>
             </Card>
         </Container>

@@ -55,7 +55,7 @@ export const AddDinner = props => {
                 <div className="twoBtn">
                     {/* <button className="btn" 
                         onClick={adding}>Agregar</button> */}
-                    <BtnAnimated handleClick={adding} text={'Add'}/>
+                    <BtnAnimated handleClick={adding} text={'Agregar'}/>
                     <BtnAnimated handleClick={props?.handleClose} text={'Listo'}/>
                     {/* <button className="btn"
                         onClick={e =>{
@@ -123,39 +123,23 @@ const Card = styled.div`
     .inputName{
         border-radius: 1em;
     }
-    .btn{
-        background-color: ${gray};
-        color: white;
-        margin: 0.5em 0.5em;
-        padding: 0.5em 1em;
-        border-radius: 2em;
-        transition: all .4s ease;
-    }
-    .btn:hover{
-        background-color: ${hoverColorText};
-        color: ${hoverColorBackground};
-    }
-    .clicked{
-        padding: 1.5em 1.5em;
-        transition: all .4s ease;
-    }
     *{
         padding: 0.5em 0.5em;
     }
 `;
 
-const Btn = styled.button`
-    background-color: ${gray};
-    color: white;
-    margin: 0.5em 0.5em;
-    padding: 0.3em 0.5em;
-    border-radius: 2em;
-    box-shadow: none;
-    :hover{
-        background-color: ${hoverColorText};
-        color: ${hoverColorBackground};
-    }
-`;
+// const Btn = styled.button`
+//     background-color: ${gray};
+//     color: white;
+//     margin: 0.5em 0.5em;
+//     padding: 0.3em 0.5em;
+//     border-radius: 2em;
+//     box-shadow: none;
+//     :hover{
+//         background-color: ${hoverColorText};
+//         color: ${hoverColorBackground};
+//     }
+// `;
 
 
 const TitleAndClose = styled.div`

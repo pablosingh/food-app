@@ -3,6 +3,7 @@ import { addFoodDinner } from '../redux/actions';
 import { useDispatch } from 'react-redux';
 // import { Link } from 'react-router-dom';
 import { primaryColor, gray, hoverColorText, hoverColorBackground } from '../styles/colors';
+import { BtnAnimated } from './BtnAnimated';
 // import { useDispatch } from "react-redux";
 
 export const Card = props => {
@@ -30,16 +31,24 @@ export const Card = props => {
                         <span><a href={food?.strYoutube}>Youtube</a></span>
                         </p>
                     </span>
-                    <button className='btnCard'
+                    {/* <button className='btnCard'
                         onClick={ () => {
-                            console.log(food?.idMeal);
+                            // console.log(food?.idMeal);
                             dispatch(addFoodDinner({
                                 idMeal: food?.idMeal,
                                 strMeal: food?.strMeal
                             }));
                             props?.handleClose();
                         }}>Agregar
-                    </button>
+                    </button> */}
+                    <BtnAnimated handleClick={  () => {
+                            // console.log(food?.idMeal);
+                            dispatch(addFoodDinner({
+                                idMeal: food?.idMeal,
+                                strMeal: food?.strMeal
+                            }));
+                            props?.handleClose();
+                        }} text='Agregar' />
                 </div>
             {/* </Link> */}
         </Container>
