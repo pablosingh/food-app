@@ -7,6 +7,7 @@ import { About } from './About';
 // import { Contact } from './Contact';
 import { Contact } from './Contact';
 import { Cook } from './Cook';
+import DivAnimated from './DivAnimated';
 // import image from '../images/resto.jpg';
 import image from '../images/madera.jpg';
 
@@ -18,10 +19,10 @@ export const Body = () => {
                 <NavBarPhone/>
                 <SubContainer>
                     <Routes>
-                        <Route path="/" element={<Table/>} />
-                        <Route path="/cook" element={<Cook />} />
-                        <Route path="/about" element={<About />} />
-                        <Route path="/contact" element={<Contact />} />
+                        <Route path="/" element={ <DivAnimated element={<Table/>} />} />
+                        <Route path="/cook" element={ <DivAnimated element={<Cook />} />} />
+                        <Route path="/about" element={ <DivAnimated element={<About />} />} />
+                        <Route path="/contact" element={ <DivAnimated element={<Contact />} />}  />
                     </Routes>  
                 </SubContainer>
         </Container>
