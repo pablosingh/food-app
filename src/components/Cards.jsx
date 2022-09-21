@@ -44,7 +44,7 @@ const Container = styled.div`
     padding: 0em 0em;
     margin: 0;
     background-color: rgba( 0,0,0,0.7 );
-    z-index: 1;
+    z-index: 9;
     transition: all .4s ease ;
 `;
 

@@ -26,14 +26,16 @@ export const Table = () => {
     const dispatch = useDispatch();
     const state = useSelector( state => state );
 
-    const openItem = () => {
-        setActiveFood(!activeFood);
+    const openItem = (value) => {
+        setActiveFood(value);
+        // console.log(!activeFood);
     };
     const fnBtnActiveAddDinner = () => {
         setActiveAddDinner(!activeAddDinner);
     };
     const fnSelect = () => {
         setSelect(!select);
+        console.log(!select);
     };
     const submiting = async() => {
         setMsg(true);
@@ -53,32 +55,26 @@ export const Table = () => {
         { !user ? <SignIn /> : <>
             { select ? <SelectTable handleClick={fnSelect} /> : <>
             
-            { activeFood && 
-                <Cards handleClose={openItem}/>    
-            }
-            {/* { activeAddDinner && 
-                <AddDinner handleClose={fnBtnActiveAddDinner}/> 
-            } */}
             <MobilePanel className={`initial ${activeAddDinner ? 'active' : ''}`}>
                 <AddDinner handleClose={fnBtnActiveAddDinner} /> 
             </MobilePanel>
 
             { msg && <Message msg={'Exito al enviar!'}/>}
-            { !activeFood && 
-                <Card>
+        
+            { activeFood ? 
+                !msg && <Cards handleClose={()=> openItem(false)}/>    
+            :
+                !msg && <Card>
                     <h2>Comensales</h2>
                     { state && state.dinners.map( d => <Item>
-                        <Dinner dinner={d} handleClick={openItem}/>
+                        <Dinner dinner={d} handleClick={()=>openItem(true)}/>
                     </Item>) }
                     <div className="d-flex">
                         <BtnAnimated handleClick={fnBtnActiveAddDinner} text={'Agregar'}/>
                         <BtnAnimated handleClick={submiting} text={'Ordernar'}/>
-                        {/* <Btn onClick={fnBtnActiveAddDinner}>Agregar</Btn>
-                        <Btn onClick={submiting}>Ordernar</Btn> */}
-                        {/* <Btn onClick={()=>console.log(state)}>State</Btn> */}
                     </div>
                 </Card>
-            }    
+            } 
             </> }
         </>}
         </Container>

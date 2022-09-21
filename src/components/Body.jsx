@@ -19,8 +19,10 @@ export const Body = () => {
                 <NavBarPhone/>
                 <SubContainer>
                     <Routes>
-                        <Route path="/" element={ <DivAnimated element={<Table/>} />} />
-                        <Route path="/cook" element={ <DivAnimated element={<Cook />} />} />
+                        {/* <Route path="/" element={ <DivAnimated element={<Table/>} />} /> */}
+                        <Route path="/" element={ <Table/> }/>
+                        {/* <Route path="/cook" element={ <DivAnimated element={<Cook />} />} /> */}
+                        <Route path="/cook" element={ <Cook /> } />
                         <Route path="/about" element={ <DivAnimated element={<About />} />} />
                         <Route path="/contact" element={ <DivAnimated element={<Contact />} />}  />
                     </Routes>  

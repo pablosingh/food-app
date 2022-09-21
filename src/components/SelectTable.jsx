@@ -15,7 +15,7 @@ export const SelectTable = ( props ) => {
         e.preventDefault();
         setNumber(e.target.value);
     };
-    const submiting = e => {
+    const submiting = () => {
         // console.log(number);
         dispatch(setTable(number));
         props?.handleClick();
