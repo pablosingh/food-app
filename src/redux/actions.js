@@ -16,21 +16,14 @@ export function loadCards(){
         const all = [];
         const promesas = [];
         const subPromesas = [];
-        // const category = `beef`;
-        // const category = `Chicken`;
         const category = `Side`;
-        // const category = `Pasta`;
-        // console.log('load cards');
-        // dispatch( { type: SET_LOADING, payload: true } );
         try {
             await fetch( `https://www.themealdb.com/api/json/v1/1/filter.php?c=${category}` )
                 .then( js => js.json() )
                 .then( arrayJson => {
-                    // arrayJson.meals.forEach(element => {
                     foods.forEach(element => {
                         promesas.push( fetch(
                             `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${element}`
-                            // `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${element.idMeal}`
                             ) )
                     })
                 })
@@ -58,8 +51,6 @@ export function loadCards(){
                                 .catch( err => console.error(err) );    
                         })
                         .catch( err => console.error(err) );
-                    // dispatch( { type: LOAD_CARDS, payload: all } ) 
-                    // dispatch( { type: SET_LOADING, payload: false } )
                 })
                 .catch( err => console.error(err) );
         } catch (e) {
